@@ -32,6 +32,14 @@ export interface Translation {
     title: string;
     subtitle: string;
     viewAll: string;
+    items: {
+      residentLounge: string;
+      shadedSeating: string;
+      gymFitness: string;
+      retailArea: string;
+      swimmingPool: string;
+      yogaPlatform: string;
+    };
   };
   gallery: {
     title: string;
@@ -106,6 +114,14 @@ const translations: Record<string, Translation> = {
       title: "Premium Amenities",
       subtitle: "Experience luxury living with world-class facilities",
       viewAll: "View All Amenities",
+      items: {
+        residentLounge: "Resident Lounge",
+        shadedSeating: "Shaded Seating Areas",
+        gymFitness: "Gym & Fitness Center",
+        retailArea: "Retail Area",
+        swimmingPool: "Swimming Pool",
+        yogaPlatform: "Yoga Platform",
+      },
     },
     gallery: {
       title: "Photo Gallery",
@@ -178,6 +194,14 @@ const translations: Record<string, Translation> = {
       title: "Премиум удобства",
       subtitle: "Испытайте роскошную жизнь с удобствами мирового класса",
       viewAll: "Посмотреть все удобства",
+      items: {
+        residentLounge: "Лаундж для жителей",
+        shadedSeating: "Затененные зоны отдыха",
+        gymFitness: "Тренажерный зал и фитнес-центр",
+        retailArea: "Торговая зона",
+        swimmingPool: "Бассейн",
+        yogaPlatform: "Платформа для йоги",
+      },
     },
     gallery: {
       title: "Фотогалерея",
@@ -250,6 +274,14 @@ const translations: Record<string, Translation> = {
       title: "Premium qulayliklar",
       subtitle: "Jahon darajasidagi ob'ektlar bilan hashamatli hayotni his eting",
       viewAll: "Barcha qulayliklarni ko'rish",
+      items: {
+        residentLounge: "Rezidentlar zaliga",
+        shadedSeating: "Soyali o'tirish joylari",
+        gymFitness: "Sport zali va fitnes markazi",
+        retailArea: "Savdo hududi",
+        swimmingPool: "Suzish hovuzi",
+        yogaPlatform: "Yoga platformasi",
+      },
     },
     gallery: {
       title: "Foto galereya",

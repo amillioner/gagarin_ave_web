@@ -11,32 +11,32 @@ const AmenitiesSection = () => {
   const { t } = useLanguage();
   const amenities = [
     {
-      title: "Resident Lounge",
+      title: t.amenities.items.residentLounge,
       image: amenityLounge,
       alt: "Luxury resident lounge with modern furniture and elegant seating areas"
     },
     {
-      title: "Shaded Seating Areas",
+      title: t.amenities.items.shadedSeating,
       image: amenitySeating,
       alt: "Outdoor shaded seating area with modern benches and landscaped gardens"
     },
     {
-      title: "Gym & Fitness Center",
+      title: t.amenities.items.gymFitness,
       image: amenityGym,
       alt: "Modern gym and fitness center with exercise equipment and floor-to-ceiling windows"
     },
     {
-      title: "Retail Area",
+      title: t.amenities.items.retailArea,
       image: amenityRetail,
       alt: "Modern retail shopping area with clean design and contemporary storefronts"
     },
     {
-      title: "Swimming Pool",
+      title: t.amenities.items.swimmingPool,
       image: amenityPool,
       alt: "Beautiful swimming pool area with clear blue water and luxury pool deck"
     },
     {
-      title: "Yoga Platform",
+      title: t.amenities.items.yogaPlatform,
       image: amenityYoga,
       alt: "Yoga platform with wooden deck and peaceful outdoor setting"
     }
