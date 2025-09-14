@@ -7,6 +7,7 @@ import SitePlanSection from "@/components/SitePlanSection";
 import AmenitiesSection from "@/components/AmenitiesSection";
 import GallerySection from "@/components/GallerySection";
 import LocationSection from "@/components/LocationSection";
+import Footer from "@/components/Footer";
 
 const Index = () => {
   return (
@@ -53,6 +54,9 @@ const Index = () => {
 
       {/* Location Section */}
       <LocationSection />
+
+      {/* Footer */}
+      <Footer />
     </div>
   );
 };
