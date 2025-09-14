@@ -3,6 +3,7 @@ import HeroSlider from "@/components/HeroSlider";
 import PropertyInfo from "@/components/PropertyInfo";
 import InquiryForm from "@/components/InquiryForm";
 import PricingSection from "@/components/PricingSection";
+import SitePlanSection from "@/components/SitePlanSection";
 
 const Index = () => {
   return (
@@ -35,6 +36,9 @@ const Index = () => {
 
       {/* Pricing Section */}
       <PricingSection />
+
+      {/* Site Plan Section */}
+      <SitePlanSection />
     </div>
   );
 };
