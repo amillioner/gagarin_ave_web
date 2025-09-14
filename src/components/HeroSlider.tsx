@@ -4,9 +4,9 @@ import { Button } from "@/components/ui/button";
 import main0 from "@/assets/main-0.jpg";
 import main1 from "@/assets/main-1.jpg";
 import main2 from "@/assets/main-2.jpg";
-import hero1 from "@/assets/hero-1.jpg";
-import hero2 from "@/assets/hero-2.jpg";
-import hero3 from "@/assets/hero-3.jpg";
+import heroNew1 from "@/assets/hero-new-1.jpg";
+import heroNew2 from "@/assets/hero-new-2.jpg";
+import heroNew3 from "@/assets/hero-new-3.jpg";
 
 const HeroSlider = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -15,9 +15,9 @@ const HeroSlider = () => {
     { image: main1, alt: "Gagarin Avenue luxury residential complex - aerial view" },
     { image: main0, alt: "Gagarin Avenue luxury residential complex - main view" },
     { image: main2, alt: "Gagarin Avenue luxury residential complex - side view" },
-    { image: hero1, alt: "Luxury residential building exterior" },
-    { image: hero2, alt: "Modern apartment building at sunset" },
-    { image: hero3, alt: "Aerial view of luxury residential complex" },
+    { image: heroNew1, alt: "Modern luxury residential complex on Gagarin Avenue" },
+    { image: heroNew2, alt: "Luxury apartment building exterior at sunset" },
+    { image: heroNew3, alt: "Aerial view of modern luxury residential complex" },
   ];
 
   const nextSlide = () => {
