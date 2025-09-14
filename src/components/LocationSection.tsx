@@ -61,7 +61,7 @@ const LocationSection = () => {
                 <div className="space-y-2">
                   <div className="text-primary font-semibold">
                     <a href="tel:+998662300171" className="hover:underline">
-                      (998) 66 2300171
+                      +(998) 66 230-01-71
                     </a>
                   </div>
                   <div className="text-primary font-semibold">
