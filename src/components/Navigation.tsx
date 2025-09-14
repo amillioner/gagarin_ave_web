@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { Menu, X, Phone } from "lucide-react";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { Menu, X, Phone, ChevronDown } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import InquiryForm from "./InquiryForm";
 
@@ -10,19 +11,17 @@ const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const languages = [
-    { code: "en", name: "ENGLISH" },
-    { code: "uz", name: "O'ZBEK" },
-    { code: "ru", name: "РУССКИЙ" },
+    { code: "en", name: "ENG", fullName: "English" },
+    { code: "uz", name: "UZB", fullName: "O'zbek" },
+    { code: "ru", name: "RUS", fullName: "Русский" },
   ];
 
   const getCurrentLanguageName = () => {
-    return languages.find(lang => lang.code === language)?.name || "ENGLISH";
+    return languages.find(lang => lang.code === language)?.name || "ENG";
   };
 
-  const handleLanguageChange = () => {
-    const currentIndex = languages.findIndex(lang => lang.code === language);
-    const nextIndex = (currentIndex + 1) % languages.length;
-    setLanguage(languages[nextIndex].code);
+  const handleLanguageChange = (newLanguage: string) => {
+    setLanguage(newLanguage);
   };
 
   // Navigation items for the menu
@@ -60,15 +59,31 @@ const Navigation = () => {
 
           {/* Language Selector & Desktop CTA Buttons */}
           <div className="hidden lg:flex items-center space-x-4">
-            {/* Simple Language Selector */}
-            <Button 
-              variant="ghost" 
-              size="sm" 
-              className="border border-border text-card-luxury-foreground hover:bg-accent/50 font-medium"
-              onClick={handleLanguageChange}
-            >
-              {getCurrentLanguageName()}
-            </Button>
+            {/* Language Dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button 
+                  variant="ghost" 
+                  size="sm" 
+                  className="border border-border text-card-luxury-foreground hover:bg-accent/50 font-medium"
+                >
+                  {getCurrentLanguageName()}
+                  <ChevronDown className="h-4 w-4 ml-2" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="bg-card border border-border/20 shadow-elegant z-50" align="end">
+                {languages.map((lang) => (
+                  <DropdownMenuItem
+                    key={lang.code}
+                    onClick={() => setLanguage(lang.code)}
+                    className="cursor-pointer hover:bg-accent/50 focus:bg-accent/50 text-card-foreground"
+                  >
+                    <span className="font-medium">{lang.name}</span>
+                    <span className="ml-2 text-muted-foreground text-sm">{lang.fullName}</span>
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
             
             <Button variant="outline" size="sm" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
               <Phone className="h-4 w-4 mr-2" />
@@ -120,14 +135,30 @@ const Navigation = () => {
               ))}
               
               <div className="pt-2 pb-2">
-                <Button 
-                  variant="ghost" 
-                  size="sm" 
-                  className="w-full border border-border text-card-luxury-foreground hover:bg-accent/50 font-medium"
-                  onClick={handleLanguageChange}
-                >
-                  {getCurrentLanguageName()}
-                </Button>
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button 
+                      variant="ghost" 
+                      size="sm" 
+                      className="w-full border border-border text-card-luxury-foreground hover:bg-accent/50 font-medium"
+                    >
+                      {getCurrentLanguageName()}
+                      <ChevronDown className="h-4 w-4 ml-2" />
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent className="bg-card border border-border/20 shadow-elegant z-50 w-48">
+                    {languages.map((lang) => (
+                      <DropdownMenuItem
+                        key={lang.code}
+                        onClick={() => setLanguage(lang.code)}
+                        className="cursor-pointer hover:bg-accent/50 focus:bg-accent/50 text-card-foreground"
+                      >
+                        <span className="font-medium">{lang.name}</span>
+                        <span className="ml-2 text-muted-foreground text-sm">{lang.fullName}</span>
+                      </DropdownMenuItem>
+                    ))}
+                  </DropdownMenuContent>
+                </DropdownMenu>
               </div>
               
               <div className="flex flex-col space-y-2 pt-4">
