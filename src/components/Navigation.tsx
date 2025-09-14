@@ -105,16 +105,29 @@ const Navigation = () => {
               </DropdownMenuContent>
             </DropdownMenu>
             
-            <div className="flex gap-2">
-              <Button variant="outline" size="sm" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
-                <Phone className="h-4 w-4 mr-2" />
-                +(998) 66 230-01-71
-              </Button>
-              <Button variant="outline" size="sm" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
-                <Phone className="h-4 w-4 mr-2" />
-                +(998) 95 500-55-55
-              </Button>
-            </div>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="outline" size="sm" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
+                  <Phone className="h-4 w-4 mr-2" />
+                  Phone
+                  <ChevronDown className="h-4 w-4 ml-2" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="bg-card border border-border/20 shadow-elegant z-50" align="end">
+                <DropdownMenuItem asChild>
+                  <a href="tel:+998662300171" className="cursor-pointer hover:bg-accent/50 focus:bg-accent/50 text-card-foreground flex items-center">
+                    <Phone className="h-4 w-4 mr-2" />
+                    +(998) 66 230-01-71
+                  </a>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <a href="tel:+998955005555" className="cursor-pointer hover:bg-accent/50 focus:bg-accent/50 text-card-foreground flex items-center">
+                    <Phone className="h-4 w-4 mr-2" />
+                    +(998) 95 500-55-55
+                  </a>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
             <Dialog>
               <DialogTrigger asChild>
                 <Button className="bg-gradient-luxury hover:opacity-90 text-primary-foreground font-semibold whitespace-nowrap min-w-[140px]">
@@ -211,14 +224,29 @@ const Navigation = () => {
               </div>
               
               <div className="flex flex-col space-y-2 pt-4">
-                <Button variant="outline" size="sm" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
-                  <Phone className="h-4 w-4 mr-2" />
-                  +(998) 66 230-01-71
-                </Button>
-                <Button variant="outline" size="sm" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
-                  <Phone className="h-4 w-4 mr-2" />
-                  +(998) 95 500-55-55
-                </Button>
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button variant="outline" size="sm" className="w-full border-primary text-primary hover:bg-primary hover:text-primary-foreground">
+                      <Phone className="h-4 w-4 mr-2" />
+                      Phone
+                      <ChevronDown className="h-4 w-4 ml-2" />
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent className="bg-card border border-border/20 shadow-elegant z-50 w-48">
+                    <DropdownMenuItem asChild>
+                      <a href="tel:+998662300171" className="cursor-pointer hover:bg-accent/50 focus:bg-accent/50 text-card-foreground flex items-center">
+                        <Phone className="h-4 w-4 mr-2" />
+                        +(998) 66 230-01-71
+                      </a>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem asChild>
+                      <a href="tel:+998955005555" className="cursor-pointer hover:bg-accent/50 focus:bg-accent/50 text-card-foreground flex items-center">
+                        <Phone className="h-4 w-4 mr-2" />
+                        +(998) 95 500-55-55
+                      </a>
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
                 <Dialog>
                   <DialogTrigger asChild>
                     <Button className="bg-gradient-luxury hover:opacity-90 text-primary-foreground font-semibold">
