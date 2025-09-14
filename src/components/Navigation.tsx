@@ -45,12 +45,12 @@ const Navigation = () => {
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-6">
+          <div className="hidden lg:flex items-center space-x-8">
             {navItems.map((item) => (
               item.name === t.nav.brochure ? (
                 <Dialog key={item.name}>
                   <DialogTrigger asChild>
-                    <button className="text-card-luxury-foreground hover:text-primary transition-colors duration-300 font-medium whitespace-nowrap min-w-[80px] text-center">
+                    <button className="text-card-luxury-foreground hover:text-primary transition-colors duration-300 font-medium whitespace-nowrap min-w-[100px] text-center">
                       {item.name}
                     </button>
                   </DialogTrigger>
@@ -69,7 +69,7 @@ const Navigation = () => {
                 <a
                   key={item.name}
                   href={item.href}
-                  className="text-card-luxury-foreground hover:text-primary transition-colors duration-300 font-medium whitespace-nowrap min-w-[80px] text-center"
+                  className="text-card-luxury-foreground hover:text-primary transition-colors duration-300 font-medium whitespace-nowrap min-w-[100px] text-center"
                 >
                   {item.name}
                 </a>
@@ -78,14 +78,14 @@ const Navigation = () => {
           </div>
 
           {/* Language Selector & Desktop CTA Buttons */}
-          <div className="hidden lg:flex items-center space-x-4 ml-8">
+          <div className="hidden lg:flex items-center space-x-6 ml-12">
             {/* Language Dropdown */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button 
                   variant="ghost" 
                   size="sm" 
-                  className="border border-border text-card-luxury-foreground hover:bg-accent/50 font-medium"
+                  className="border border-border text-card-luxury-foreground hover:bg-accent/50 font-medium w-20 justify-center"
                 >
                   {getCurrentLanguageName()}
                   <ChevronDown className="h-4 w-4 ml-2" />
@@ -105,19 +105,33 @@ const Navigation = () => {
               </DropdownMenuContent>
             </DropdownMenu>
             
-            <div className="flex gap-2">
-              <Button variant="outline" size="sm" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
-                <Phone className="h-4 w-4 mr-2" />
-                +(998) 66 230-01-71
-              </Button>
-              <Button variant="outline" size="sm" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
-                <Phone className="h-4 w-4 mr-2" />
-                +(998) 95 500-55-55
-              </Button>
-            </div>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="outline" size="sm" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground w-32">
+                  <Phone className="h-4 w-4 mr-2" />
+                  Call Us
+                  <ChevronDown className="h-4 w-4 ml-2" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="bg-card border border-border/20 shadow-elegant z-50" align="end">
+                <DropdownMenuItem asChild>
+                  <a href="tel:+998662300171" className="cursor-pointer hover:bg-accent/50 focus:bg-accent/50 text-card-foreground flex items-center">
+                    <Phone className="h-4 w-4 mr-2" />
+                    +(998) 66 230-01-71
+                  </a>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <a href="tel:+998955005555" className="cursor-pointer hover:bg-accent/50 focus:bg-accent/50 text-card-foreground flex items-center">
+                    <Phone className="h-4 w-4 mr-2" />
+                    +(998) 95 500-55-55
+                  </a>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+            
             <Dialog>
               <DialogTrigger asChild>
-                <Button className="bg-gradient-luxury hover:opacity-90 text-primary-foreground font-semibold whitespace-nowrap min-w-[140px]">
+                <Button className="bg-gradient-luxury hover:opacity-90 text-primary-foreground font-semibold whitespace-nowrap w-44">
                   {t.nav.requestCallBack}
                 </Button>
               </DialogTrigger>
