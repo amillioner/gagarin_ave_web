@@ -2,6 +2,7 @@ import Navigation from "@/components/Navigation";
 import HeroSlider from "@/components/HeroSlider";
 import PropertyInfo from "@/components/PropertyInfo";
 import InquiryForm from "@/components/InquiryForm";
+import PricingSection from "@/components/PricingSection";
 
 const Index = () => {
   return (
@@ -31,6 +32,9 @@ const Index = () => {
           </div>
         </div>
       </section>
+
+      {/* Pricing Section */}
+      <PricingSection />
     </div>
   );
 };
