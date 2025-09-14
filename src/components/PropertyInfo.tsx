@@ -11,7 +11,7 @@ const PropertyInfo = () => {
         {/* Property Title */}
         <div>
           <h1 className="font-display text-4xl font-bold text-foreground mb-2">
-            LUXE RESIDENCES
+            GAGARIN AVENUE
           </h1>
           <div className="flex items-center text-muted-foreground mb-1">
             <MapPin className="h-5 w-5 mr-2" />

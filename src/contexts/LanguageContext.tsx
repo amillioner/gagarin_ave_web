@@ -102,7 +102,7 @@ const translations: Record<string, Translation> = {
       contactUs: "Contact Us",
     },
     hero: {
-      title: "LUXE RESIDENCES",
+      title: "GAGARIN AVENUE",
       subtitle: "At Premium District",
       location: "Gagarin Avenue",
       developer: "By Elite Properties",
@@ -189,7 +189,7 @@ const translations: Record<string, Translation> = {
       contactUs: "Связаться с нами",
     },
     hero: {
-      title: "ЛЮКС РЕЗИДЕНЦИИ",
+      title: "GAGARIN AVENUE",
       subtitle: "В премиум районе",
       location: "Проспект Гагарина",
       developer: "От Элитной недвижимости",
@@ -276,7 +276,7 @@ const translations: Record<string, Translation> = {
       contactUs: "Biz bilan bog'lanish",
     },
     hero: {
-      title: "LYUKS REZIDENSIYALAR",
+      title: "GAGARIN AVENUE",
       subtitle: "Premium hududda",
       location: "Gagarin ko'chasi",
       developer: "Elite Properties tomonidan",
