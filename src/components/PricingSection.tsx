@@ -10,19 +10,19 @@ const PricingSection = () => {
   const apartments = [
     {
       type: "1 Bedroom",
-      area: "780 Sq.ft",
+      area: "81.00 м²",
       price: "UZS 1.2 B",
       usdPrice: "USD 326K",
     },
     {
       type: "2 Bedroom", 
-      area: "1130 - 1140 Sq.ft",
+      area: "86.00 м²",
       price: "UZS 1.8 B",
       usdPrice: "USD 490K",
     },
     {
       type: "3 Bedroom",
-      area: "1490 - 1507 Sq.ft", 
+      area: "91.5 м²", 
       price: "UZS 2.3 B",
       usdPrice: "USD 626K",
     },

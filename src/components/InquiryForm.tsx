@@ -148,6 +148,18 @@ const InquiryForm = () => {
           <p className="text-xs text-muted-foreground">{t.form.trustIndicators.certified}</p>
         </div>
       </div>
+
+      {/* Phone Numbers */}
+      <div className="flex flex-col gap-2 mt-4 pt-4 border-t border-border/20">
+        <a href="tel:+998662300171" className="flex items-center justify-center gap-2 p-3 bg-primary/10 rounded-lg hover:bg-primary/20 transition-colors">
+          <Phone className="h-4 w-4 text-primary" />
+          <span className="text-primary font-medium">+(998) 66 2300171</span>
+        </a>
+        <a href="tel:+998955005555" className="flex items-center justify-center gap-2 p-3 bg-primary/10 rounded-lg hover:bg-primary/20 transition-colors">
+          <Phone className="h-4 w-4 text-primary" />
+          <span className="text-primary font-medium">+(998) 95 500-55-55</span>
+        </a>
+      </div>
     </Card>
   );
 };
