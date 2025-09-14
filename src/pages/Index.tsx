@@ -1,12 +1,36 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import Navigation from "@/components/Navigation";
+import HeroSlider from "@/components/HeroSlider";
+import PropertyInfo from "@/components/PropertyInfo";
+import InquiryForm from "@/components/InquiryForm";
 
 const Index = () => {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
+    <div className="min-h-screen bg-background">
+      {/* Navigation */}
+      <Navigation />
+
+      {/* Hero Section with Slider */}
+      <section id="home" className="relative">
+        <HeroSlider />
+        
+        {/* Overlay Content */}
+        <div className="absolute inset-0 flex items-center justify-between px-4 lg:px-8 pt-20">
+          <div className="container mx-auto flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 max-w-7xl">
+            {/* Property Information Card - Left Side */}
+            <div className="w-full lg:w-auto flex-shrink-0">
+              <PropertyInfo />
+            </div>
+            
+            {/* Spacer for center */}
+            <div className="hidden lg:block flex-1"></div>
+            
+            {/* Inquiry Form - Right Side */}
+            <div className="w-full lg:w-auto flex-shrink-0">
+              <InquiryForm />
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };
