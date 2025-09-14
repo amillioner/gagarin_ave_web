@@ -131,7 +131,7 @@ const Navigation = () => {
             
             <Dialog>
               <DialogTrigger asChild>
-                <Button className="bg-gradient-luxury hover:opacity-90 text-primary-foreground font-semibold whitespace-nowrap w-44">
+                <Button className="bg-gradient-luxury hover:opacity-90 text-primary-foreground font-semibold whitespace-nowrap min-w-[176px] px-4">
                   {t.nav.requestCallBack}
                 </Button>
               </DialogTrigger>
