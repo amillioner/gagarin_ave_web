@@ -55,7 +55,7 @@ const LocationSection = () => {
                 <div className="inline-block bg-primary/10 text-primary px-4 py-2 rounded-lg font-semibold mb-4">
                   Gagarin Avenue
                 </div>
-                <p className="text-muted-foreground text-sm mb-4">
+                <p className="text-primary font-semibold mb-4">
                   Samarkand, Uzbekistan
                 </p>
                 <div className="space-y-2">
