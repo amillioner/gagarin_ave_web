@@ -70,10 +70,7 @@ const LocationSection = () => {
                   <Clock className="h-6 w-6 text-primary" />
                   {t.location.connectivity}
                 </h3>
-                <div className="w-16 h-0.5 bg-gradient-luxury mx-auto mb-4"></div>
-                <div className="inline-block bg-gradient-luxury text-primary-foreground px-4 py-2 rounded-lg font-semibold text-sm">
-                  {t.location.connectivity}
-                </div>
+                <div className="w-16 h-0.5 bg-gradient-luxury mx-auto"></div>
               </div>
 
               <div className="space-y-4 mb-6">
