@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import main0 from "@/assets/main-0.jpg";
+import main1 from "@/assets/main-1.jpg";
+import main2 from "@/assets/main-2.jpg";
 import hero1 from "@/assets/hero-1.jpg";
 import hero2 from "@/assets/hero-2.jpg";
 import hero3 from "@/assets/hero-3.jpg";
@@ -9,6 +12,9 @@ const HeroSlider = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   
   const slides = [
+    { image: main0, alt: "Gagarin Avenue luxury residential complex - main view" },
+    { image: main1, alt: "Gagarin Avenue luxury residential complex - aerial view" },
+    { image: main2, alt: "Gagarin Avenue luxury residential complex - side view" },
     { image: hero1, alt: "Luxury residential building exterior" },
     { image: hero2, alt: "Modern apartment building at sunset" },
     { image: hero3, alt: "Aerial view of luxury residential complex" },
