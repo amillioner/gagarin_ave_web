@@ -40,17 +40,17 @@ const Navigation = () => {
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <div className="font-display text-2xl font-bold text-primary">
+          <div className="font-display text-2xl font-bold text-primary min-w-[200px]">
             {t.hero.title}
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-8">
+          <div className="hidden lg:flex items-center space-x-6">
             {navItems.map((item) => (
               <a
                 key={item.name}
                 href={item.href}
-                className="text-card-luxury-foreground hover:text-primary transition-colors duration-300 font-medium"
+                className="text-card-luxury-foreground hover:text-primary transition-colors duration-300 font-medium whitespace-nowrap min-w-[80px] text-center"
               >
                 {item.name}
               </a>
@@ -91,7 +91,7 @@ const Navigation = () => {
             </Button>
             <Dialog>
               <DialogTrigger asChild>
-                <Button className="bg-gradient-luxury hover:opacity-90 text-primary-foreground font-semibold">
+                <Button className="bg-gradient-luxury hover:opacity-90 text-primary-foreground font-semibold whitespace-nowrap min-w-[140px]">
                   {t.nav.requestCallBack}
                 </Button>
               </DialogTrigger>
