@@ -9,19 +9,19 @@ const PricingSection = () => {
   const { t } = useLanguage();
   const apartments = [
     {
-      type: "1 Bedroom",
+      type: t.pricing.bedrooms.one,
       area: "81.00 м²",
       price: "UZS 1.2 B",
       usdPrice: "USD 326K",
     },
     {
-      type: "2 Bedroom", 
+      type: t.pricing.bedrooms.two, 
       area: "86.00 м²",
       price: "UZS 1.8 B",
       usdPrice: "USD 490K",
     },
     {
-      type: "3 Bedroom",
+      type: t.pricing.bedrooms.three,
       area: "91.5 м²", 
       price: "UZS 2.3 B",
       usdPrice: "USD 626K",
@@ -116,7 +116,7 @@ const PricingSection = () => {
         {/* Additional Info */}
         <div className="text-center mt-8">
           <p className="text-muted-foreground mb-4">
-            All prices are inclusive of registration and other charges
+            {t.pricing.inclusiveNote}
           </p>
           <div className="flex flex-wrap justify-center gap-4 text-sm">
             <span className="bg-primary/10 text-primary px-4 py-2 rounded-full font-medium">
@@ -126,7 +126,7 @@ const PricingSection = () => {
               ✓ {t.pricing.premiumFinishes}
             </span>
             <span className="bg-primary/10 text-primary px-4 py-2 rounded-full font-medium">
-              ✓ World-class Amenities
+              ✓ {t.pricing.worldClassAmenities}
             </span>
           </div>
         </div>

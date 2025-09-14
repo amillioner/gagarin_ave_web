@@ -27,6 +27,13 @@ export interface Translation {
     readyToMove: string;
     premiumFinishes: string;
     priceInquiry: string;
+    bedrooms: {
+      one: string;
+      two: string;
+      three: string;
+    };
+    inclusiveNote: string;
+    worldClassAmenities: string;
   };
   amenities: {
     title: string;
@@ -109,6 +116,13 @@ const translations: Record<string, Translation> = {
       readyToMove: "Ready to Move",
       premiumFinishes: "Premium Finishes",
       priceInquiry: "Price Inquiry",
+      bedrooms: {
+        one: "1 Bedroom",
+        two: "2 Bedroom",
+        three: "3 Bedroom",
+      },
+      inclusiveNote: "All prices are inclusive of registration and other charges",
+      worldClassAmenities: "World-class Amenities",
     },
     amenities: {
       title: "Premium Amenities",
@@ -189,6 +203,13 @@ const translations: Record<string, Translation> = {
       readyToMove: "Готово к заселению",
       premiumFinishes: "Премиум отделка",
       priceInquiry: "Запрос цены",
+      bedrooms: {
+        one: "1 комнатная",
+        two: "2 комнатная",
+        three: "3 комнатная",
+      },
+      inclusiveNote: "Все цены включают регистрацию и прочие сборы",
+      worldClassAmenities: "Удобства мирового класса",
     },
     amenities: {
       title: "Премиум удобства",
@@ -269,6 +290,13 @@ const translations: Record<string, Translation> = {
       readyToMove: "Ko'chishga tayyor",
       premiumFinishes: "Premium tugallash",
       priceInquiry: "Narx so'rovi",
+      bedrooms: {
+        one: "1 xonali",
+        two: "2 xonali",
+        three: "3 xonali",
+      },
+      inclusiveNote: "Barcha narxlarga ro'yxatga olish va boshqa to'lovlar kiradi",
+      worldClassAmenities: "Jahon darajasidagi qulayliklar",
     },
     amenities: {
       title: "Premium qulayliklar",
