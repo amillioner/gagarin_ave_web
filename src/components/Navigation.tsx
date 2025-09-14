@@ -58,7 +58,7 @@ const Navigation = () => {
           </div>
 
           {/* Language Selector & Desktop CTA Buttons */}
-          <div className="hidden lg:flex items-center space-x-4">
+          <div className="hidden lg:flex items-center space-x-4 ml-8">
             {/* Language Dropdown */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
