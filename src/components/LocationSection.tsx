@@ -6,12 +6,12 @@ import InquiryForm from "./InquiryForm";
 
 const LocationSection = () => {
   const connectivityData = [
-    { name: "Al Maktoum International Airport", time: "10 Mins" },
-    { name: "EXPO City", time: "15 Mins" },
-    { name: "JAFZA Gate", time: "15 Mins" },
-    { name: "DP World Terminal", time: "20 Mins" },
-    { name: "Ibn Battuta Mall", time: "20 Mins" },
-    { name: "Dubai Parks and Resorts", time: "20 Mins" }
+    { name: "Samarkand State University", time: "5 Mins" },
+    { name: "Central Bazaar Market", time: "8 Mins" },
+    { name: "Registan Square", time: "12 Mins" },
+    { name: "Samarkand Park", time: "7 Mins" },
+    { name: "City Shopping Center", time: "10 Mins" },
+    { name: "Traditional Restaurants District", time: "6 Mins" }
   ];
 
   return (
@@ -51,10 +51,10 @@ const LocationSection = () => {
 
               <div className="text-center">
                 <div className="inline-block bg-primary/10 text-primary px-4 py-2 rounded-lg font-semibold mb-4">
-                  Windsor House by Ellington
+                  Gagarin Avenue
                 </div>
                 <p className="text-muted-foreground text-sm">
-                  Dubai South Residential District, UAE
+                  Samarkand, Uzbekistan
                 </p>
               </div>
             </div>

@@ -82,7 +82,7 @@ const InquiryForm = () => {
               value={formData.phone}
               onChange={handleInputChange}
               className="pl-10 bg-background/80 border-border/40 focus:border-primary"
-              placeholder="+1 (555) 123-4567"
+              placeholder="+(998) 66 230-01-71"
               required
             />
           </div>

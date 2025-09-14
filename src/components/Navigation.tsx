@@ -66,7 +66,7 @@ const Navigation = () => {
             
             <Button variant="outline" size="sm" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
               <Phone className="h-4 w-4 mr-2" />
-              +1 (555) 123-4567
+              +(998) 66 2300171
             </Button>
             <Dialog>
               <DialogTrigger asChild>
@@ -132,7 +132,7 @@ const Navigation = () => {
               <div className="flex flex-col space-y-2 pt-4">
                 <Button variant="outline" size="sm" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
                   <Phone className="h-4 w-4 mr-2" />
-                  +1 (555) 123-4567
+                  +(998) 66 2300171
                 </Button>
                 <Dialog>
                   <DialogTrigger asChild>

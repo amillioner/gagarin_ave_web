@@ -9,19 +9,19 @@ const PricingSection = () => {
     {
       type: "1 Bedroom",
       area: "780 Sq.ft",
-      price: "AED 1.2 M",
+      price: "UZS 1.2 B",
       usdPrice: "USD 326K",
     },
     {
       type: "2 Bedroom", 
       area: "1130 - 1140 Sq.ft",
-      price: "AED 1.8 M",
+      price: "UZS 1.8 B",
       usdPrice: "USD 490K",
     },
     {
       type: "3 Bedroom",
       area: "1490 - 1507 Sq.ft", 
-      price: "AED 2.3 M",
+      price: "UZS 2.3 B",
       usdPrice: "USD 626K",
     },
   ];
@@ -90,7 +90,7 @@ const PricingSection = () => {
                           className="bg-gradient-luxury hover:opacity-90 text-primary-foreground font-semibold px-8"
                           size="lg"
                         >
-                          Price Breakup
+                          Price Inquiry
                         </Button>
                       </DialogTrigger>
                       <DialogContent className="sm:max-w-md">
