@@ -1,12 +1,14 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { useLanguage } from "@/contexts/LanguageContext";
 import InquiryForm from "./InquiryForm";
 import galleryBedroom from "@/assets/gallery-bedroom.jpg";
 import galleryExterior from "@/assets/gallery-exterior.jpg";
 import galleryLiving from "@/assets/gallery-living.jpg";
 
 const GallerySection = () => {
+  const { t } = useLanguage();
   const galleryImages = [
     {
       image: galleryBedroom,
@@ -27,7 +29,7 @@ const GallerySection = () => {
       <div className="container mx-auto px-4 max-w-7xl">
         <div className="text-center mb-12">
           <h2 className="font-display text-4xl font-bold text-primary mb-4" style={{ color: '#B8860B' }}>
-            Project Gallery
+            {t.gallery.title}
           </h2>
           <div className="w-24 h-1 bg-gradient-luxury mx-auto"></div>
         </div>
@@ -54,13 +56,13 @@ const GallerySection = () => {
                 className="bg-gradient-luxury hover:opacity-90 text-primary-foreground font-semibold"
                 size="lg"
               >
-                View Complete Gallery
+                {t.gallery.viewComplete}
               </Button>
             </DialogTrigger>
             <DialogContent className="sm:max-w-md">
               <DialogHeader>
                 <DialogTitle className="text-center text-xl font-bold">
-                  Contact Us
+                  {t.nav.contactUs}
                 </DialogTitle>
               </DialogHeader>
               <div className="mt-4">

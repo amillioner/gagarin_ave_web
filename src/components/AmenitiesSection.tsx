@@ -1,4 +1,5 @@
 import { Card } from "@/components/ui/card";
+import { useLanguage } from "@/contexts/LanguageContext";
 import amenityLounge from "@/assets/amenity-lounge.jpg";
 import amenityGym from "@/assets/amenity-gym.jpg";
 import amenityPool from "@/assets/amenity-pool.jpg";
@@ -7,6 +8,7 @@ import amenitySeating from "@/assets/amenity-seating.jpg";
 import amenityYoga from "@/assets/amenity-yoga.jpg";
 
 const AmenitiesSection = () => {
+  const { t } = useLanguage();
   const amenities = [
     {
       title: "Resident Lounge",
@@ -45,7 +47,7 @@ const AmenitiesSection = () => {
       <div className="container mx-auto px-4 max-w-7xl">
         <div className="text-center mb-12">
           <div className="inline-block bg-primary text-primary-foreground px-6 py-2 rounded-lg font-semibold text-lg mb-4">
-            Amenities
+            {t.amenities.title}
           </div>
           <div className="w-24 h-1 bg-gradient-luxury mx-auto"></div>
         </div>

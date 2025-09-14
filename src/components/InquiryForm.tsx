@@ -6,8 +6,10 @@ import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Phone, Mail, User, Shield, Clock, Award } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const InquiryForm = () => {
+  const { t } = useLanguage();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -22,7 +24,7 @@ const InquiryForm = () => {
     if (!formData.consent) {
       toast({
         title: "Consent Required",
-        description: "Please agree to the processing of your data.",
+        description: t.form.consentRequired,
         variant: "destructive",
       });
       return;
@@ -30,7 +32,7 @@ const InquiryForm = () => {
     
     toast({
       title: "Inquiry Submitted!",
-      description: "We'll contact you within 24 hours.",
+      description: t.form.submitSuccess,
     });
     
     // Reset form
@@ -53,7 +55,7 @@ const InquiryForm = () => {
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
           <Label htmlFor="name" className="text-sm font-medium text-foreground">
-            Name
+            {t.form.name}
           </Label>
           <div className="relative">
             <User className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
@@ -63,7 +65,7 @@ const InquiryForm = () => {
               value={formData.name}
               onChange={handleInputChange}
               className="pl-10 bg-background/80 border-border/40 focus:border-primary"
-              placeholder="Your Full Name"
+              placeholder={t.form.name}
               required
             />
           </div>
@@ -71,7 +73,7 @@ const InquiryForm = () => {
 
         <div>
           <Label htmlFor="phone" className="text-sm font-medium text-foreground">
-            Mobile Number
+            {t.form.phone}
           </Label>
           <div className="relative">
             <Phone className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
@@ -90,7 +92,7 @@ const InquiryForm = () => {
 
         <div>
           <Label htmlFor="email" className="text-sm font-medium text-foreground">
-            Email
+            {t.form.email}
           </Label>
           <div className="relative">
             <Mail className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
@@ -101,7 +103,7 @@ const InquiryForm = () => {
               value={formData.email}
               onChange={handleInputChange}
               className="pl-10 bg-background/80 border-border/40 focus:border-primary"
-              placeholder="your.email@example.com"
+              placeholder={t.form.email}
               required
             />
           </div>
@@ -117,10 +119,9 @@ const InquiryForm = () => {
             className="border-border/40 data-[state=checked]:bg-primary data-[state=checked]:border-primary"
           />
           <Label htmlFor="consent" className="text-xs text-muted-foreground leading-relaxed">
-            I consent to the processing of provided data according to{" "}
-            <span className="text-primary underline cursor-pointer">Privacy Policy</span> |{" "}
-            <span className="text-primary underline cursor-pointer">Terms & Conditions</span>.
-            I authorize representatives to call, SMS, email or WhatsApp me about products and offers.
+            {t.form.consent}{" "}
+            <span className="text-primary underline cursor-pointer">{t.form.privacyPolicy}</span> |{" "}
+            <span className="text-primary underline cursor-pointer">{t.form.termsConditions}</span>.
           </Label>
         </div>
 
@@ -128,7 +129,7 @@ const InquiryForm = () => {
           type="submit"
           className="w-full bg-gradient-luxury hover:opacity-90 text-primary-foreground font-semibold py-6 text-lg mt-6"
         >
-          Submit
+          {t.form.submit}
         </Button>
       </form>
 
@@ -136,15 +137,15 @@ const InquiryForm = () => {
       <div className="flex justify-around items-center mt-6 pt-6 border-t border-border/20">
         <div className="text-center">
           <Clock className="h-6 w-6 mx-auto mb-1 text-primary" />
-          <p className="text-xs text-muted-foreground">Instant<br />Call Back</p>
+          <p className="text-xs text-muted-foreground">{t.form.trustIndicators.support}</p>
         </div>
         <div className="text-center">
           <Shield className="h-6 w-6 mx-auto mb-1 text-primary" />
-          <p className="text-xs text-muted-foreground">Free Site<br />Visit</p>
+          <p className="text-xs text-muted-foreground">{t.form.trustIndicators.secure}</p>
         </div>
         <div className="text-center">
           <Award className="h-6 w-6 mx-auto mb-1 text-primary" />
-          <p className="text-xs text-muted-foreground">Best Price<br />Guarantee</p>
+          <p className="text-xs text-muted-foreground">{t.form.trustIndicators.certified}</p>
         </div>
       </div>
     </Card>

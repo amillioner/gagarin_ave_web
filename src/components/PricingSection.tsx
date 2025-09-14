@@ -2,9 +2,11 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Home, Maximize } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 import InquiryForm from "./InquiryForm";
 
 const PricingSection = () => {
+  const { t } = useLanguage();
   const apartments = [
     {
       type: "1 Bedroom",
@@ -31,7 +33,7 @@ const PricingSection = () => {
       <div className="container mx-auto px-4 max-w-6xl">
         <div className="text-center mb-12">
           <h2 className="font-display text-4xl font-bold text-primary mb-4">
-            Apartments
+            {t.pricing.title}
           </h2>
           <div className="w-24 h-1 bg-gradient-luxury mx-auto"></div>
         </div>
@@ -90,13 +92,13 @@ const PricingSection = () => {
                           className="bg-gradient-luxury hover:opacity-90 text-primary-foreground font-semibold px-8"
                           size="lg"
                         >
-                          Price Inquiry
+                          {t.pricing.priceInquiry}
                         </Button>
                       </DialogTrigger>
                       <DialogContent className="sm:max-w-md">
                         <DialogHeader>
                           <DialogTitle className="text-center text-xl font-bold">
-                            Contact Us
+                            {t.nav.contactUs}
                           </DialogTitle>
                         </DialogHeader>
                         <div className="mt-4">
@@ -118,10 +120,10 @@ const PricingSection = () => {
           </p>
           <div className="flex flex-wrap justify-center gap-4 text-sm">
             <span className="bg-primary/10 text-primary px-4 py-2 rounded-full font-medium">
-              ✓ Ready to Move
+              ✓ {t.pricing.readyToMove}
             </span>
             <span className="bg-primary/10 text-primary px-4 py-2 rounded-full font-medium">
-              ✓ Premium Finishes
+              ✓ {t.pricing.premiumFinishes}
             </span>
             <span className="bg-primary/10 text-primary px-4 py-2 rounded-full font-medium">
               ✓ World-class Amenities

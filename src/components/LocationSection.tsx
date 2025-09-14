@@ -2,9 +2,11 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { MapPin, Clock } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 import InquiryForm from "./InquiryForm";
 
 const LocationSection = () => {
+  const { t } = useLanguage();
   const connectivityData = [
     { name: "Samarkand State University", time: "5 Mins" },
     { name: "Central Bazaar Market", time: "8 Mins" },
@@ -19,7 +21,7 @@ const LocationSection = () => {
       <div className="container mx-auto px-4 max-w-6xl">
         <div className="text-center mb-12">
           <h2 className="font-display text-4xl font-bold text-primary mb-4">
-            Location & Connectivity
+            {t.location.title}
           </h2>
           <div className="w-24 h-1 bg-gradient-luxury mx-auto"></div>
         </div>
@@ -66,11 +68,11 @@ const LocationSection = () => {
               <div className="text-center mb-6">
                 <h3 className="font-display text-2xl font-bold text-primary mb-2 flex items-center justify-center gap-2">
                   <Clock className="h-6 w-6 text-primary" />
-                  Connectivity
+                  {t.location.connectivity}
                 </h3>
                 <div className="w-16 h-0.5 bg-gradient-luxury mx-auto mb-4"></div>
                 <div className="inline-block bg-gradient-luxury text-primary-foreground px-4 py-2 rounded-lg font-semibold text-sm">
-                  Connectivity
+                  {t.location.connectivity}
                 </div>
               </div>
 
@@ -91,19 +93,19 @@ const LocationSection = () => {
               <div className="text-center">
                 <Dialog>
                   <DialogTrigger asChild>
-                    <Button 
-                      className="w-full bg-gradient-luxury hover:opacity-90 text-primary-foreground font-semibold"
-                      size="lg"
-                    >
-                      Request Location Details
-                    </Button>
+                <Button 
+                  className="w-full bg-gradient-luxury hover:opacity-90 text-primary-foreground font-semibold"
+                  size="lg"
+                >
+                  {t.location.requestDetails}
+                </Button>
                   </DialogTrigger>
                   <DialogContent className="sm:max-w-md">
-                    <DialogHeader>
-                      <DialogTitle className="text-center text-xl font-bold">
-                        Contact Us
-                      </DialogTitle>
-                    </DialogHeader>
+            <DialogHeader>
+              <DialogTitle className="text-center text-xl font-bold">
+                {t.nav.contactUs}
+              </DialogTitle>
+            </DialogHeader>
                     <div className="mt-4">
                       <InquiryForm />
                     </div>
