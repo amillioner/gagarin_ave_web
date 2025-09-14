@@ -1,6 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { CheckCircle, MapPin, Building, CreditCard } from "lucide-react";
+import InquiryForm from "./InquiryForm";
 
 const PropertyInfo = () => {
   return (
@@ -53,12 +55,26 @@ const PropertyInfo = () => {
 
         {/* CTA Buttons */}
         <div className="space-y-3">
-          <Button 
-            className="w-full bg-gradient-luxury hover:opacity-90 text-primary-foreground font-semibold py-6 text-lg"
-            size="lg"
-          >
-            Enquire Now
-          </Button>
+          <Dialog>
+            <DialogTrigger asChild>
+              <Button 
+                className="w-full bg-gradient-luxury hover:opacity-90 text-primary-foreground font-semibold py-6 text-lg"
+                size="lg"
+              >
+                Enquire Now
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="sm:max-w-md">
+              <DialogHeader>
+                <DialogTitle className="text-center text-xl font-bold">
+                  Contact Us
+                </DialogTitle>
+              </DialogHeader>
+              <div className="mt-4">
+                <InquiryForm />
+              </div>
+            </DialogContent>
+          </Dialog>
           
           <div className="flex space-x-3">
             <Button 
