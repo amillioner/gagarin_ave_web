@@ -17,16 +17,6 @@ const Index = () => {
       {/* Hero Section with Slider */}
       <section id="home" className="relative">
         <HeroSlider />
-        
-        {/* Overlay Content */}
-        <div className="absolute inset-0 flex items-center justify-end px-4 lg:px-8 pt-20">
-          <div className="container mx-auto flex justify-end max-w-7xl">
-            {/* Inquiry Form - Right Side */}
-            <div className="w-full lg:w-auto flex-shrink-0">
-              <InquiryForm />
-            </div>
-          </div>
-        </div>
       </section>
 
       {/* Pricing Section */}

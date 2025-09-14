@@ -12,8 +12,8 @@ const HeroSlider = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   
   const slides = [
-    { image: main0, alt: "Gagarin Avenue luxury residential complex - main view" },
     { image: main1, alt: "Gagarin Avenue luxury residential complex - aerial view" },
+    { image: main0, alt: "Gagarin Avenue luxury residential complex - main view" },
     { image: main2, alt: "Gagarin Avenue luxury residential complex - side view" },
     { image: hero1, alt: "Luxury residential building exterior" },
     { image: hero2, alt: "Modern apartment building at sunset" },
