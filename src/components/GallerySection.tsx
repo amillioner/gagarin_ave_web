@@ -1,5 +1,7 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import InquiryForm from "./InquiryForm";
 import galleryBedroom from "@/assets/gallery-bedroom.jpg";
 import galleryExterior from "@/assets/gallery-exterior.jpg";
 import galleryLiving from "@/assets/gallery-living.jpg";
@@ -46,12 +48,26 @@ const GallerySection = () => {
         </div>
 
         <div className="text-center">
-          <Button 
-            className="bg-gradient-luxury hover:opacity-90 text-primary-foreground font-semibold"
-            size="lg"
-          >
-            View Complete Gallery
-          </Button>
+          <Dialog>
+            <DialogTrigger asChild>
+              <Button 
+                className="bg-gradient-luxury hover:opacity-90 text-primary-foreground font-semibold"
+                size="lg"
+              >
+                View Complete Gallery
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="sm:max-w-md">
+              <DialogHeader>
+                <DialogTitle className="text-center text-xl font-bold">
+                  Contact Us
+                </DialogTitle>
+              </DialogHeader>
+              <div className="mt-4">
+                <InquiryForm />
+              </div>
+            </DialogContent>
+          </Dialog>
         </div>
       </div>
     </section>

@@ -1,6 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { MapPin, Clock } from "lucide-react";
+import InquiryForm from "./InquiryForm";
 
 const LocationSection = () => {
   const connectivityData = [
@@ -87,12 +89,26 @@ const LocationSection = () => {
               </div>
 
               <div className="text-center">
-                <Button 
-                  className="w-full bg-gradient-luxury hover:opacity-90 text-primary-foreground font-semibold"
-                  size="lg"
-                >
-                  Request Location Details
-                </Button>
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <Button 
+                      className="w-full bg-gradient-luxury hover:opacity-90 text-primary-foreground font-semibold"
+                      size="lg"
+                    >
+                      Request Location Details
+                    </Button>
+                  </DialogTrigger>
+                  <DialogContent className="sm:max-w-md">
+                    <DialogHeader>
+                      <DialogTitle className="text-center text-xl font-bold">
+                        Contact Us
+                      </DialogTitle>
+                    </DialogHeader>
+                    <div className="mt-4">
+                      <InquiryForm />
+                    </div>
+                  </DialogContent>
+                </Dialog>
               </div>
             </div>
           </Card>

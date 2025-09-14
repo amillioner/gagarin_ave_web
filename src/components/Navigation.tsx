@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Menu, X, Phone } from "lucide-react";
+import InquiryForm from "./InquiryForm";
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -66,9 +68,23 @@ const Navigation = () => {
               <Phone className="h-4 w-4 mr-2" />
               +1 (555) 123-4567
             </Button>
-            <Button className="bg-gradient-luxury hover:opacity-90 text-primary-foreground font-semibold">
-              Request Call Back
-            </Button>
+            <Dialog>
+              <DialogTrigger asChild>
+                <Button className="bg-gradient-luxury hover:opacity-90 text-primary-foreground font-semibold">
+                  Request Call Back
+                </Button>
+              </DialogTrigger>
+              <DialogContent className="sm:max-w-md">
+                <DialogHeader>
+                  <DialogTitle className="text-center text-xl font-bold">
+                    Contact Us
+                  </DialogTitle>
+                </DialogHeader>
+                <div className="mt-4">
+                  <InquiryForm />
+                </div>
+              </DialogContent>
+            </Dialog>
           </div>
 
           {/* Mobile Menu Button */}
@@ -118,9 +134,23 @@ const Navigation = () => {
                   <Phone className="h-4 w-4 mr-2" />
                   +1 (555) 123-4567
                 </Button>
-                <Button className="bg-gradient-luxury hover:opacity-90 text-primary-foreground font-semibold">
-                  Request Call Back
-                </Button>
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <Button className="bg-gradient-luxury hover:opacity-90 text-primary-foreground font-semibold">
+                      Request Call Back
+                    </Button>
+                  </DialogTrigger>
+                  <DialogContent className="sm:max-w-md">
+                    <DialogHeader>
+                      <DialogTitle className="text-center text-xl font-bold">
+                        Contact Us
+                      </DialogTitle>
+                    </DialogHeader>
+                    <div className="mt-4">
+                      <InquiryForm />
+                    </div>
+                  </DialogContent>
+                </Dialog>
               </div>
             </div>
           </div>
