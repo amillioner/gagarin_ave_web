@@ -113,7 +113,7 @@ const translations: Record<string, Translation> = {
       viewComplete: "View Complete Gallery",
     },
     location: {
-      title: "Location & Connectivity",
+      title: "Location",
       connectivity: "Connectivity",
       requestDetails: "Request Location Details",
     },
@@ -185,7 +185,7 @@ const translations: Record<string, Translation> = {
       viewComplete: "Посмотреть полную галерею",
     },
     location: {
-      title: "Местоположение и связь",
+      title: "Местоположение",
       connectivity: "Связь",
       requestDetails: "Запросить детали местоположения",
     },
@@ -257,7 +257,7 @@ const translations: Record<string, Translation> = {
       viewComplete: "To'liq galereyani ko'rish",
     },
     location: {
-      title: "Joylashuv va aloqa",
+      title: "Joylashuv",
       connectivity: "Aloqa",
       requestDetails: "Joylashuv tafsilotlarini so'rash",
     },
