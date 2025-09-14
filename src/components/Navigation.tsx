@@ -1,9 +1,22 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Phone } from "lucide-react";
+import { Menu, X, Phone, ChevronDown } from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [selectedLanguage, setSelectedLanguage] = useState("ENGLISH");
+
+  const languages = [
+    { code: "en", name: "ENGLISH" },
+    { code: "uz", name: "O'ZBEK" },
+    { code: "ru", name: "РУССКИЙ" },
+  ];
 
   const navItems = [
     { name: "Home", href: "#home" },
@@ -37,8 +50,33 @@ const Navigation = () => {
             ))}
           </div>
 
-          {/* Desktop CTA Buttons */}
+          {/* Language Selector & Desktop CTA Buttons */}
           <div className="hidden lg:flex items-center space-x-4">
+            {/* Language Selector */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button 
+                  variant="ghost" 
+                  size="sm" 
+                  className="border border-border text-card-luxury-foreground hover:bg-accent/50 font-medium"
+                >
+                  {selectedLanguage}
+                  <ChevronDown className="h-4 w-4 ml-1" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="bg-background border border-border">
+                {languages.map((language) => (
+                  <DropdownMenuItem
+                    key={language.code}
+                    onClick={() => setSelectedLanguage(language.name)}
+                    className="cursor-pointer hover:bg-accent/50"
+                  >
+                    {language.name}
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
+            
             <Button variant="outline" size="sm" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
               <Phone className="h-4 w-4 mr-2" />
               +1 (555) 123-4567
@@ -73,6 +111,34 @@ const Navigation = () => {
                   {item.name}
                 </a>
               ))}
+              
+              {/* Mobile Language Selector */}
+              <div className="pt-2 pb-2">
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button 
+                      variant="ghost" 
+                      size="sm" 
+                      className="w-full justify-between border border-border text-card-luxury-foreground hover:bg-accent/50 font-medium"
+                    >
+                      {selectedLanguage}
+                      <ChevronDown className="h-4 w-4" />
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent className="bg-background border border-border w-full">
+                    {languages.map((language) => (
+                      <DropdownMenuItem
+                        key={language.code}
+                        onClick={() => setSelectedLanguage(language.name)}
+                        className="cursor-pointer hover:bg-accent/50"
+                      >
+                        {language.name}
+                      </DropdownMenuItem>
+                    ))}
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </div>
+              
               <div className="flex flex-col space-y-2 pt-4">
                 <Button variant="outline" size="sm" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
                   <Phone className="h-4 w-4 mr-2" />
