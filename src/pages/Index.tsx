@@ -4,6 +4,9 @@ import PropertyInfo from "@/components/PropertyInfo";
 import InquiryForm from "@/components/InquiryForm";
 import PricingSection from "@/components/PricingSection";
 import SitePlanSection from "@/components/SitePlanSection";
+import AmenitiesSection from "@/components/AmenitiesSection";
+import GallerySection from "@/components/GallerySection";
+import LocationSection from "@/components/LocationSection";
 
 const Index = () => {
   return (
@@ -38,7 +41,18 @@ const Index = () => {
       <PricingSection />
 
       {/* Site Plan Section */}
-      <SitePlanSection />
+      <section id="siteplan">
+        <SitePlanSection />
+      </section>
+
+      {/* Amenities Section */}
+      <AmenitiesSection />
+
+      {/* Gallery Section */}
+      <GallerySection />
+
+      {/* Location Section */}
+      <LocationSection />
     </div>
   );
 };
