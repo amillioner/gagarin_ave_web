@@ -1,12 +1,6 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Phone, ChevronDown } from "lucide-react";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+import { Menu, X, Phone } from "lucide-react";
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -52,30 +46,19 @@ const Navigation = () => {
 
           {/* Language Selector & Desktop CTA Buttons */}
           <div className="hidden lg:flex items-center space-x-4">
-            {/* Language Selector */}
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button 
-                  variant="ghost" 
-                  size="sm" 
-                  className="border border-border text-card-luxury-foreground hover:bg-accent/50 font-medium"
-                >
-                  {selectedLanguage}
-                  <ChevronDown className="h-4 w-4 ml-1" />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent className="bg-background border border-border">
-                {languages.map((language) => (
-                  <DropdownMenuItem
-                    key={language.code}
-                    onClick={() => setSelectedLanguage(language.name)}
-                    className="cursor-pointer hover:bg-accent/50"
-                  >
-                    {language.name}
-                  </DropdownMenuItem>
-                ))}
-              </DropdownMenuContent>
-            </DropdownMenu>
+            {/* Simple Language Selector */}
+            <Button 
+              variant="ghost" 
+              size="sm" 
+              className="border border-border text-card-luxury-foreground hover:bg-accent/50 font-medium"
+              onClick={() => {
+                const currentIndex = languages.findIndex(lang => lang.name === selectedLanguage);
+                const nextIndex = (currentIndex + 1) % languages.length;
+                setSelectedLanguage(languages[nextIndex].name);
+              }}
+            >
+              {selectedLanguage}
+            </Button>
             
             <Button variant="outline" size="sm" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
               <Phone className="h-4 w-4 mr-2" />
@@ -114,29 +97,18 @@ const Navigation = () => {
               
               {/* Mobile Language Selector */}
               <div className="pt-2 pb-2">
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <Button 
-                      variant="ghost" 
-                      size="sm" 
-                      className="w-full justify-between border border-border text-card-luxury-foreground hover:bg-accent/50 font-medium"
-                    >
-                      {selectedLanguage}
-                      <ChevronDown className="h-4 w-4" />
-                    </Button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent className="bg-background border border-border w-full">
-                    {languages.map((language) => (
-                      <DropdownMenuItem
-                        key={language.code}
-                        onClick={() => setSelectedLanguage(language.name)}
-                        className="cursor-pointer hover:bg-accent/50"
-                      >
-                        {language.name}
-                      </DropdownMenuItem>
-                    ))}
-                  </DropdownMenuContent>
-                </DropdownMenu>
+                <Button 
+                  variant="ghost" 
+                  size="sm" 
+                  className="w-full border border-border text-card-luxury-foreground hover:bg-accent/50 font-medium"
+                  onClick={() => {
+                    const currentIndex = languages.findIndex(lang => lang.name === selectedLanguage);
+                    const nextIndex = (currentIndex + 1) % languages.length;
+                    setSelectedLanguage(languages[nextIndex].name);
+                  }}
+                >
+                  {selectedLanguage}
+                </Button>
               </div>
               
               <div className="flex flex-col space-y-2 pt-4">
