@@ -12,6 +12,8 @@ const Navigation = () => {
     { code: "ru", name: "РУССКИЙ" },
   ];
 
+  // Navigation items for the menu
+
   const navItems = [
     { name: "Home", href: "#home" },
     { name: "Price", href: "#price" },
