@@ -77,12 +77,26 @@ const PropertyInfo = () => {
           </Dialog>
           
           <div className="flex space-x-3">
-            <Button 
-              variant="outline" 
-              className="flex-1 border-primary text-primary hover:bg-primary hover:text-primary-foreground"
-            >
-              Organize Site Visit
-            </Button>
+            <Dialog>
+              <DialogTrigger asChild>
+                <Button 
+                  variant="outline" 
+                  className="flex-1 border-primary text-primary hover:bg-primary hover:text-primary-foreground"
+                >
+                  Organize Site Visit
+                </Button>
+              </DialogTrigger>
+              <DialogContent className="sm:max-w-md">
+                <DialogHeader>
+                  <DialogTitle className="text-center text-xl font-bold">
+                    Schedule Site Visit
+                  </DialogTitle>
+                </DialogHeader>
+                <div className="mt-4">
+                  <InquiryForm />
+                </div>
+              </DialogContent>
+            </Dialog>
             <Button 
               variant="outline" 
               className="flex-1 border-primary text-primary hover:bg-primary hover:text-primary-foreground"
