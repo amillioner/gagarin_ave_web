@@ -3,24 +3,24 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { useLanguage } from "@/contexts/LanguageContext";
 import InquiryForm from "./InquiryForm";
-import main0 from "@/assets/main-0.jpg";
-import main1 from "@/assets/main-1.jpg";
-import main2 from "@/assets/main-2.jpg";
+import gallery1 from "@/assets/gallery-1.webp";
+import gallery2 from "@/assets/gallery-2.webp";
+import gallery3 from "@/assets/gallery-3.webp";
 
 const GallerySection = () => {
   const { t } = useLanguage();
   const galleryImages = [
     {
-      image: main0,
-      alt: "Luxury interior design showcasing modern living spaces"
+      image: gallery1,
+      alt: "Luxury residential exterior showcasing modern architecture and landscaping"
     },
     {
-      image: main1,
-      alt: "Premium apartment features and contemporary architecture"
+      image: gallery2,
+      alt: "Premium apartment interior with contemporary design and elegant finishes"
     },
     {
-      image: main2,
-      alt: "Elegant residential amenities and lifestyle spaces"
+      image: gallery3,
+      alt: "Elegant outdoor amenity spaces with resort-style pool and relaxation areas"
     }
   ];
 

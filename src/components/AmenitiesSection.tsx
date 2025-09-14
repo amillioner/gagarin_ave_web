@@ -1,40 +1,43 @@
 import { Card } from "@/components/ui/card";
 import { useLanguage } from "@/contexts/LanguageContext";
-import main0 from "@/assets/main-0.jpg";
-import main1 from "@/assets/main-1.jpg";
-import main2 from "@/assets/main-2.jpg";
+import amenityLounge from "@/assets/amenity-lounge-new.png";
+import amenitySeating from "@/assets/amenity-seating-new.png";
+import amenityGym from "@/assets/amenity-gym-new.png";
+import amenityRetail from "@/assets/amenity-retail-new.png";
+import amenityPool from "@/assets/amenity-pool-new.png";
+import amenityYoga from "@/assets/amenity-yoga-new.png";
 
 const AmenitiesSection = () => {
   const { t } = useLanguage();
   const amenities = [
     {
       title: t.amenities.items.residentLounge,
-      image: main0,
+      image: amenityLounge,
       alt: "Premium resident lounge with luxury furnishings and modern design"
     },
     {
       title: t.amenities.items.shadedSeating,
-      image: main1,
+      image: amenitySeating,
       alt: "Elegant outdoor seating areas with contemporary landscape design"
     },
     {
       title: t.amenities.items.gymFitness,
-      image: main2,
+      image: amenityGym,
       alt: "State-of-the-art fitness center with premium equipment and amenities"
     },
     {
       title: t.amenities.items.retailArea,
-      image: main0,
+      image: amenityRetail,
       alt: "Modern retail spaces with upscale shopping and dining options"
     },
     {
       title: t.amenities.items.swimmingPool,
-      image: main1,
+      image: amenityPool,
       alt: "Luxury swimming pool with resort-style deck and relaxation areas"
     },
     {
       title: t.amenities.items.yogaPlatform,
-      image: main2,
+      image: amenityYoga,
       alt: "Tranquil yoga and wellness platform with serene outdoor setting"
     }
   ];
