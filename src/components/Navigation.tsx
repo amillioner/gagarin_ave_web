@@ -105,29 +105,16 @@ const Navigation = () => {
               </DropdownMenuContent>
             </DropdownMenu>
             
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="outline" size="sm" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
-                  <Phone className="h-4 w-4 mr-2" />
-                  Call Us
-                  <ChevronDown className="h-4 w-4 ml-2" />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent className="bg-card border border-border/20 shadow-elegant z-50" align="end">
-                <DropdownMenuItem
-                  className="cursor-pointer hover:bg-accent/50 focus:bg-accent/50 text-card-foreground"
-                >
-                  <Phone className="h-4 w-4 mr-2" />
-                  +(998) 66 230-01-71
-                </DropdownMenuItem>
-                <DropdownMenuItem
-                  className="cursor-pointer hover:bg-accent/50 focus:bg-accent/50 text-card-foreground"
-                >
-                  <Phone className="h-4 w-4 mr-2" />
-                  +(998) 95 500-55-55
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+            <div className="flex gap-2">
+              <Button variant="outline" size="sm" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
+                <Phone className="h-4 w-4 mr-2" />
+                +(998) 66 230-01-71
+              </Button>
+              <Button variant="outline" size="sm" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
+                <Phone className="h-4 w-4 mr-2" />
+                +(998) 95 500-55-55
+              </Button>
+            </div>
             <Dialog>
               <DialogTrigger asChild>
                 <Button className="bg-gradient-luxury hover:opacity-90 text-primary-foreground font-semibold whitespace-nowrap min-w-[140px]">
@@ -223,33 +210,15 @@ const Navigation = () => {
                 </DropdownMenu>
               </div>
               
-              <div className="pt-2 pb-2">
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <Button variant="outline" size="sm" className="w-full border-primary text-primary hover:bg-primary hover:text-primary-foreground">
-                      <Phone className="h-4 w-4 mr-2" />
-                      Call Us
-                      <ChevronDown className="h-4 w-4 ml-2" />
-                    </Button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent className="bg-card border border-border/20 shadow-elegant z-50 w-48">
-                    <DropdownMenuItem
-                      className="cursor-pointer hover:bg-accent/50 focus:bg-accent/50 text-card-foreground"
-                    >
-                      <Phone className="h-4 w-4 mr-2" />
-                      +(998) 66 230-01-71
-                    </DropdownMenuItem>
-                    <DropdownMenuItem
-                      className="cursor-pointer hover:bg-accent/50 focus:bg-accent/50 text-card-foreground"
-                    >
-                      <Phone className="h-4 w-4 mr-2" />
-                      +(998) 95 500-55-55
-                    </DropdownMenuItem>
-                  </DropdownMenuContent>
-                </DropdownMenu>
-              </div>
-              
               <div className="flex flex-col space-y-2 pt-4">
+                <Button variant="outline" size="sm" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
+                  <Phone className="h-4 w-4 mr-2" />
+                  +(998) 66 230-01-71
+                </Button>
+                <Button variant="outline" size="sm" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
+                  <Phone className="h-4 w-4 mr-2" />
+                  +(998) 95 500-55-55
+                </Button>
                 <Dialog>
                   <DialogTrigger asChild>
                     <Button className="bg-gradient-luxury hover:opacity-90 text-primary-foreground font-semibold">
