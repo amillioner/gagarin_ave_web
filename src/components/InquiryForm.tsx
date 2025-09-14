@@ -45,13 +45,6 @@ const InquiryForm = () => {
 
   return (
     <Card className="bg-card/95 backdrop-blur-sm shadow-elegant border-border/20 p-8 max-w-md">
-      <div className="text-center mb-6">
-        <h2 className="font-display text-2xl font-bold text-primary mb-2">
-          ENQUIRE NOW
-        </h2>
-        <div className="w-12 h-0.5 bg-gradient-luxury mx-auto"></div>
-      </div>
-
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
           <Label htmlFor="name" className="text-sm font-medium text-foreground">
