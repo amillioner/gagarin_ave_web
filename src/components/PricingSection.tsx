@@ -11,20 +11,20 @@ const PricingSection = () => {
     {
       type: t.pricing.bedrooms.one,
       area: "81.00 м²",
-      price: "UZS 1.2 B",
-      usdPrice: "USD 326K",
+      price: "UZS 995.3 M",
+      usdPrice: "USD 77.8K",
     },
     {
       type: t.pricing.bedrooms.two, 
       area: "86.00 м²",
-      price: "UZS 1.8 B",
-      usdPrice: "USD 490K",
+      price: "UZS 1.06 B",
+      usdPrice: "USD 82.6K",
     },
     {
       type: t.pricing.bedrooms.three,
       area: "91.5 м²", 
-      price: "UZS 2.3 B",
-      usdPrice: "USD 626K",
+      price: "UZS 1.12 B",
+      usdPrice: "USD 87.8K",
     },
   ];
 

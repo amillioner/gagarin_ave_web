@@ -13,20 +13,7 @@ const Footer = () => {
           {/* Copyright and Legal Links */}
           <div className="text-center pt-2">
             <p className="text-sm text-muted-foreground">
-              {t.footer.copyright} | {" "}
-              <a 
-                href="#privacy" 
-                className="hover:text-primary transition-colors duration-300 underline"
-              >
-                {t.footer.privacyPolicy}
-              </a>
-              {" | "}
-              <a 
-                href="#terms" 
-                className="hover:text-primary transition-colors duration-300 underline"
-              >
-                {t.footer.termsConditions}
-              </a>
+              {t.footer.copyright} | {t.footer.privacyPolicy} | {t.footer.termsConditions}
             </p>
           </div>
         </div>

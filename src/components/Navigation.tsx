@@ -47,13 +47,33 @@ const Navigation = () => {
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-6">
             {navItems.map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                className="text-card-luxury-foreground hover:text-primary transition-colors duration-300 font-medium whitespace-nowrap min-w-[80px] text-center"
-              >
-                {item.name}
-              </a>
+              item.name === t.nav.brochure ? (
+                <Dialog key={item.name}>
+                  <DialogTrigger asChild>
+                    <button className="text-card-luxury-foreground hover:text-primary transition-colors duration-300 font-medium whitespace-nowrap min-w-[80px] text-center">
+                      {item.name}
+                    </button>
+                  </DialogTrigger>
+                  <DialogContent className="sm:max-w-md">
+                    <DialogHeader>
+                      <DialogTitle className="text-center text-xl font-bold">
+                        {t.nav.brochure}
+                      </DialogTitle>
+                    </DialogHeader>
+                    <div className="mt-4">
+                      <InquiryForm />
+                    </div>
+                  </DialogContent>
+                </Dialog>
+              ) : (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  className="text-card-luxury-foreground hover:text-primary transition-colors duration-300 font-medium whitespace-nowrap min-w-[80px] text-center"
+                >
+                  {item.name}
+                </a>
+              )
             ))}
           </div>
 
@@ -124,14 +144,37 @@ const Navigation = () => {
           <div className="lg:hidden mt-4 pb-4 border-t border-border/20">
             <div className="flex flex-col space-y-3 pt-4">
               {navItems.map((item) => (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  className="text-card-luxury-foreground hover:text-primary transition-colors duration-300 font-medium py-2"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {item.name}
-                </a>
+                item.name === t.nav.brochure ? (
+                  <Dialog key={item.name}>
+                    <DialogTrigger asChild>
+                      <button 
+                        className="text-card-luxury-foreground hover:text-primary transition-colors duration-300 font-medium py-2 w-full text-left"
+                        onClick={() => setIsMenuOpen(false)}
+                      >
+                        {item.name}
+                      </button>
+                    </DialogTrigger>
+                    <DialogContent className="sm:max-w-md">
+                      <DialogHeader>
+                        <DialogTitle className="text-center text-xl font-bold">
+                          {t.nav.brochure}
+                        </DialogTitle>
+                      </DialogHeader>
+                      <div className="mt-4">
+                        <InquiryForm />
+                      </div>
+                    </DialogContent>
+                  </Dialog>
+                ) : (
+                  <a
+                    key={item.name}
+                    href={item.href}
+                    className="text-card-luxury-foreground hover:text-primary transition-colors duration-300 font-medium py-2"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    {item.name}
+                  </a>
+                )
               ))}
               
               <div className="pt-2 pb-2">
