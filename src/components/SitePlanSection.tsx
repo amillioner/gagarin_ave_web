@@ -125,7 +125,7 @@ const SitePlanSection = () => {
         {/* Additional Info */}
         <div className="text-center mt-12">
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Explore our comprehensive site plans and detailed unit layouts. Get a complete understanding of the property's layout, positioning, and architectural design.
+            {t.sitePlan.description}
           </p>
         </div>
       </div>

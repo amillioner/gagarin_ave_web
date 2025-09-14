@@ -63,6 +63,7 @@ export interface Translation {
     subtitle: string;
     viewMasterPlan: string;
     requestUnitPlan: string;
+    description: string;
   };
   form: {
     name: string;
@@ -152,6 +153,7 @@ const translations: Record<string, Translation> = {
       subtitle: "Discover the architectural excellence",
       viewMasterPlan: "View Master Plan Layout",
       requestUnitPlan: "Request Unit Plan Layout",
+      description: "Explore our comprehensive site plans and detailed unit layouts. Get a complete understanding of the property's layout, positioning, and architectural design.",
     },
     form: {
       name: "Full Name",
@@ -239,6 +241,7 @@ const translations: Record<string, Translation> = {
       subtitle: "Откройте для себя архитектурное совершенство",
       viewMasterPlan: "Посмотреть генеральный план",
       requestUnitPlan: "Запросить план квартиры",
+      description: "Изучите наши комплексные планы участков и детальные планировки квартир. Получите полное представление о планировке, расположении и архитектурном дизайне недвижимости.",
     },
     form: {
       name: "Полное имя",
@@ -326,6 +329,7 @@ const translations: Record<string, Translation> = {
       subtitle: "Arxitektura mukammalligini kashf eting",
       viewMasterPlan: "Bosh reja tartibini ko'rish",
       requestUnitPlan: "Kvartira rejasini so'rash",
+      description: "Bizning keng qamrovli sayt rejalarimiz va batafsil kvartira tartiblarini o'rganing. Mulkning tartib-qoidalari, joylashuvi va me'moriy dizayni haqida to'liq tushunchaga ega bo'ling.",
     },
     form: {
       name: "To'liq ism",

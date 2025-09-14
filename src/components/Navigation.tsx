@@ -79,24 +79,31 @@ const Navigation = () => {
 
           {/* Language Selector & Desktop CTA Buttons */}
           <div className="hidden lg:flex items-center space-x-4 ml-8">
-            {/* Language Buttons Expanded */}
-            <div className="flex items-center space-x-2 bg-card/50 rounded-lg p-1 border border-border/20">
-              {languages.map((lang) => (
-                <Button
-                  key={lang.code}
-                  variant={language === lang.code ? "default" : "ghost"}
-                  size="sm"
-                  onClick={() => setLanguage(lang.code)}
-                  className={`font-medium min-w-[50px] ${
-                    language === lang.code
-                      ? "bg-primary text-primary-foreground hover:bg-primary/90"
-                      : "text-card-luxury-foreground hover:bg-accent/50 hover:text-primary"
-                  }`}
+            {/* Language Dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button 
+                  variant="ghost" 
+                  size="sm" 
+                  className="border border-border text-card-luxury-foreground hover:bg-accent/50 font-medium min-w-[60px]"
                 >
-                  {lang.name}
+                  {getCurrentLanguageName()}
+                  <ChevronDown className="h-4 w-4 ml-2" />
                 </Button>
-              ))}
-            </div>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="bg-card border border-border/20 shadow-elegant z-50" align="end">
+                {languages.map((lang) => (
+                  <DropdownMenuItem
+                    key={lang.code}
+                    onClick={() => setLanguage(lang.code)}
+                    className="cursor-pointer hover:bg-accent/50 focus:bg-accent/50 text-card-foreground"
+                  >
+                    <span className="font-medium">{lang.name}</span>
+                    <span className="ml-2 text-muted-foreground text-sm">{lang.fullName}</span>
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
             
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
@@ -190,25 +197,30 @@ const Navigation = () => {
               ))}
               
               <div className="pt-2 pb-2">
-                <div className="flex flex-col space-y-2 bg-card/50 rounded-lg p-2 border border-border/20">
-                  <div className="text-sm font-medium text-muted-foreground mb-1">Language</div>
-                  {languages.map((lang) => (
-                    <Button
-                      key={lang.code}
-                      variant={language === lang.code ? "default" : "ghost"}
-                      size="sm"
-                      onClick={() => setLanguage(lang.code)}
-                      className={`w-full justify-start font-medium ${
-                        language === lang.code
-                          ? "bg-primary text-primary-foreground hover:bg-primary/90"
-                          : "text-card-luxury-foreground hover:bg-accent/50 hover:text-primary"
-                      }`}
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button 
+                      variant="ghost" 
+                      size="sm" 
+                      className="w-full border border-border text-card-luxury-foreground hover:bg-accent/50 font-medium"
                     >
-                      <span className="font-medium">{lang.name}</span>
-                      <span className="ml-2 text-muted-foreground text-sm">{lang.fullName}</span>
+                      {getCurrentLanguageName()}
+                      <ChevronDown className="h-4 w-4 ml-2" />
                     </Button>
-                  ))}
-                </div>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent className="bg-card border border-border/20 shadow-elegant z-50 w-48">
+                    {languages.map((lang) => (
+                      <DropdownMenuItem
+                        key={lang.code}
+                        onClick={() => setLanguage(lang.code)}
+                        className="cursor-pointer hover:bg-accent/50 focus:bg-accent/50 text-card-foreground"
+                      >
+                        <span className="font-medium">{lang.name}</span>
+                        <span className="ml-2 text-muted-foreground text-sm">{lang.fullName}</span>
+                      </DropdownMenuItem>
+                    ))}
+                  </DropdownMenuContent>
+                </DropdownMenu>
               </div>
               
               <div className="flex flex-col space-y-2 pt-4">
