@@ -26,9 +26,9 @@ const LocationSection = () => {
           <div className="w-24 h-1 bg-gradient-luxury mx-auto"></div>
         </div>
 
-        <div className="flex justify-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
           {/* Map */}
-          <Card className="bg-card/95 backdrop-blur-sm shadow-elegant border-border/20 overflow-hidden max-w-2xl w-full">
+          <Card className="bg-card/95 backdrop-blur-sm shadow-elegant border-border/20 overflow-hidden">
             <div className="p-6">
               <div className="text-center mb-4">
                 <h3 className="font-display text-2xl font-bold text-primary mb-2 flex items-center justify-center gap-2">
@@ -58,6 +58,59 @@ const LocationSection = () => {
                 <p className="text-muted-foreground text-sm">
                   Samarkand, Uzbekistan
                 </p>
+              </div>
+            </div>
+          </Card>
+
+          {/* Connectivity */}
+          <Card className="bg-card/95 backdrop-blur-sm shadow-elegant border-border/20">
+            <div className="p-6">
+              <div className="text-center mb-6">
+                <h3 className="font-display text-2xl font-bold text-primary mb-2 flex items-center justify-center gap-2">
+                  <Clock className="h-6 w-6 text-primary" />
+                  {t.location.connectivity}
+                </h3>
+                <div className="w-16 h-0.5 bg-gradient-luxury mx-auto mb-4"></div>
+                <div className="inline-block bg-gradient-luxury text-primary-foreground px-4 py-2 rounded-lg font-semibold text-sm">
+                  {t.location.connectivity}
+                </div>
+              </div>
+
+              <div className="space-y-4 mb-6">
+                {connectivityData.map((item, index) => (
+                  <div key={index} className="flex items-center justify-between p-3 bg-background/50 rounded-lg border border-border/20 hover:bg-background/80 transition-colors duration-300">
+                    <div className="flex items-center gap-3">
+                      <MapPin className="h-4 w-4 text-primary flex-shrink-0" />
+                      <span className="text-card-foreground font-medium">{item.name}</span>
+                    </div>
+                    <div className="text-primary font-semibold text-sm">
+                      {item.time}
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="text-center">
+                <Dialog>
+                  <DialogTrigger asChild>
+                <Button 
+                  className="w-full bg-gradient-luxury hover:opacity-90 text-primary-foreground font-semibold"
+                  size="lg"
+                >
+                  {t.location.requestDetails}
+                </Button>
+                  </DialogTrigger>
+                  <DialogContent className="sm:max-w-md">
+            <DialogHeader>
+              <DialogTitle className="text-center text-xl font-bold">
+                {t.nav.contactUs}
+              </DialogTitle>
+            </DialogHeader>
+                    <div className="mt-4">
+                      <InquiryForm />
+                    </div>
+                  </DialogContent>
+                </Dialog>
               </div>
             </div>
           </Card>
