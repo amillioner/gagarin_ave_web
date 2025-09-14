@@ -105,10 +105,16 @@ const Navigation = () => {
               </DropdownMenuContent>
             </DropdownMenu>
             
-            <Button variant="outline" size="sm" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
-              <Phone className="h-4 w-4 mr-2" />
-              +(998) 66 230-01-71
-            </Button>
+            <div className="flex gap-2">
+              <Button variant="outline" size="sm" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
+                <Phone className="h-4 w-4 mr-2" />
+                +(998) 66 230-01-71
+              </Button>
+              <Button variant="outline" size="sm" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
+                <Phone className="h-4 w-4 mr-2" />
+                +(998) 95 500-55-55
+              </Button>
+            </div>
             <Dialog>
               <DialogTrigger asChild>
                 <Button className="bg-gradient-luxury hover:opacity-90 text-primary-foreground font-semibold whitespace-nowrap min-w-[140px]">
@@ -208,6 +214,10 @@ const Navigation = () => {
                 <Button variant="outline" size="sm" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
                   <Phone className="h-4 w-4 mr-2" />
                   +(998) 66 230-01-71
+                </Button>
+                <Button variant="outline" size="sm" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
+                  <Phone className="h-4 w-4 mr-2" />
+                  +(998) 95 500-55-55
                 </Button>
                 <Dialog>
                   <DialogTrigger asChild>
