@@ -55,9 +55,21 @@ const LocationSection = () => {
                 <div className="inline-block bg-primary/10 text-primary px-4 py-2 rounded-lg font-semibold mb-4">
                   Gagarin Avenue
                 </div>
-                <p className="text-muted-foreground text-sm">
+                <p className="text-muted-foreground text-sm mb-4">
                   Samarkand, Uzbekistan
                 </p>
+                <div className="space-y-2">
+                  <div className="text-primary font-semibold">
+                    <a href="tel:+998662300171" className="hover:underline">
+                      (998) 66 2300171
+                    </a>
+                  </div>
+                  <div className="text-primary font-semibold">
+                    <a href="tel:+998955005555" className="hover:underline">
+                      +(998) 95 500-55-55
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
           </Card>
