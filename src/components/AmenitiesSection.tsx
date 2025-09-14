@@ -1,44 +1,41 @@
 import { Card } from "@/components/ui/card";
 import { useLanguage } from "@/contexts/LanguageContext";
-import amenityLounge from "@/assets/amenity-lounge.jpg";
-import amenityGym from "@/assets/amenity-gym.jpg";
-import amenityPool from "@/assets/amenity-pool.jpg";
-import amenityRetail from "@/assets/amenity-retail.jpg";
-import amenitySeating from "@/assets/amenity-seating.jpg";
-import amenityYoga from "@/assets/amenity-yoga.jpg";
+import main0 from "@/assets/main-0.jpg";
+import main1 from "@/assets/main-1.jpg";
+import main2 from "@/assets/main-2.jpg";
 
 const AmenitiesSection = () => {
   const { t } = useLanguage();
   const amenities = [
     {
       title: t.amenities.items.residentLounge,
-      image: amenityLounge,
-      alt: "Luxury resident lounge with modern furniture and elegant seating areas"
+      image: main0,
+      alt: "Premium resident lounge with luxury furnishings and modern design"
     },
     {
       title: t.amenities.items.shadedSeating,
-      image: amenitySeating,
-      alt: "Outdoor shaded seating area with modern benches and landscaped gardens"
+      image: main1,
+      alt: "Elegant outdoor seating areas with contemporary landscape design"
     },
     {
       title: t.amenities.items.gymFitness,
-      image: amenityGym,
-      alt: "Modern gym and fitness center with exercise equipment and floor-to-ceiling windows"
+      image: main2,
+      alt: "State-of-the-art fitness center with premium equipment and amenities"
     },
     {
       title: t.amenities.items.retailArea,
-      image: amenityRetail,
-      alt: "Modern retail shopping area with clean design and contemporary storefronts"
+      image: main0,
+      alt: "Modern retail spaces with upscale shopping and dining options"
     },
     {
       title: t.amenities.items.swimmingPool,
-      image: amenityPool,
-      alt: "Beautiful swimming pool area with clear blue water and luxury pool deck"
+      image: main1,
+      alt: "Luxury swimming pool with resort-style deck and relaxation areas"
     },
     {
       title: t.amenities.items.yogaPlatform,
-      image: amenityYoga,
-      alt: "Yoga platform with wooden deck and peaceful outdoor setting"
+      image: main2,
+      alt: "Tranquil yoga and wellness platform with serene outdoor setting"
     }
   ];
 
