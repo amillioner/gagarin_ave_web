@@ -1,29 +1,22 @@
-import { Card } from "@/components/ui/card";
 import { FileText, Home } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import ContactDialog from "./ContactDialog";
 import { PrimaryButtonFull } from "@/components/ui/button-variants";
+import Section from "@/components/ui/section";
+import SectionHeader from "@/components/ui/section-header";
+import ElegantCard from "@/components/ui/elegant-card";
 import masterPlan from "@/assets/master-plan.jpg";
 import unitPlan from "@/assets/unit-plan.jpg";
 
 const SitePlanSection = () => {
   const { t } = useLanguage();
   return (
-    <section id="site-plan" className="pt-32 pb bg-background">
-      <div className="container mx-auto px-4 max-w-6xl">
-        <div className="text-center mb-12">
-          <h2 className="font-display text-4xl font-bold text-primary mb-4">
-            {t.sitePlan.title}
-          </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto mb-4">
-            {t.sitePlan.subtitle}
-          </p>
-          <div className="w-24 h-1 bg-gradient-luxury mx-auto"></div>
-        </div>
+    <Section id="site-plan" className="pt-32 pb-20 bg-background">
+      <SectionHeader title={t.sitePlan.title} subtitle={t.sitePlan.subtitle} />
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Master Plan Layout */}
-          <Card className="bg-card/95 backdrop-blur-sm shadow-elegant border-border/20 overflow-hidden group hover:shadow-glow transition-all duration-500">
+          <ElegantCard className="overflow-hidden" group>
             <div className="p-8">
               <div className="text-center mb-6">
                 <h3 className="font-display text-2xl font-bold text-primary mb-2 flex items-center justify-center gap-2">
@@ -56,10 +49,10 @@ const SitePlanSection = () => {
                 }
               />
             </div>
-          </Card>
+          </ElegantCard>
 
           {/* Unit Plan Layout */}
-          <Card className="bg-card/95 backdrop-blur-sm shadow-elegant border-border/20 overflow-hidden group hover:shadow-glow transition-all duration-500">
+          <ElegantCard className="overflow-hidden" group>
             <div className="p-8">
               <div className="text-center mb-6">
                 <h3 className="font-display text-2xl font-bold text-primary mb-2 flex items-center justify-center gap-2">
@@ -92,7 +85,7 @@ const SitePlanSection = () => {
                 }
               />
             </div>
-          </Card>
+          </ElegantCard>
         </div>
 
         {/* Additional Info */}
@@ -101,8 +94,7 @@ const SitePlanSection = () => {
             {t.sitePlan.description}
           </p>
         </div>
-      </div>
-    </section>
+    </Section>
   );
 };
 

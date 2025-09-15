@@ -1,8 +1,10 @@
-import { Card } from "@/components/ui/card";
 import { Home, Maximize } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import ContactDialog from "./ContactDialog";
 import { PrimaryButton } from "@/components/ui/button-variants";
+import Section from "@/components/ui/section";
+import SectionHeader from "@/components/ui/section-header";
+import ElegantCard from "@/components/ui/elegant-card";
 
 const PricingSection = () => {
   const { t } = useLanguage();
@@ -28,16 +30,10 @@ const PricingSection = () => {
   ];
 
   return (
-    <section id="price" className="pt-32 pb bg-muted/30">
-      <div className="container mx-auto px-4 max-w-6xl">
-        <div className="text-center mb-12">
-          <h2 className="font-display text-4xl font-bold text-primary mb-4">
-            {t.pricing.title}
-          </h2>
-          <div className="w-24 h-1 bg-gradient-luxury mx-auto"></div>
-        </div>
+    <Section id="price" className="pt-32 pb-20 bg-muted/30">
+      <SectionHeader title={t.pricing.title} />
 
-        <Card className="bg-card/95 backdrop-blur-sm shadow-elegant border-border/20 overflow-hidden">
+        <ElegantCard className="overflow-hidden">
           {/* Table Header */}
           <div className="bg-muted/50 px-8 py-6 border-b border-border/20">
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4 items-center">
@@ -97,7 +93,7 @@ const PricingSection = () => {
               </div>
             ))}
           </div>
-        </Card>
+        </ElegantCard>
 
         {/* Additional Info */}
         <div className="text-center mt-8">
@@ -116,8 +112,7 @@ const PricingSection = () => {
             </span>
           </div>
         </div>
-      </div>
-    </section>
+    </Section>
   );
 };
 

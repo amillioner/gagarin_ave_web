@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
-import { Card } from "@/components/ui/card";
 import { useLanguage } from "@/contexts/LanguageContext";
 import ContactDialog from "./ContactDialog";
 import { PrimaryButton } from "@/components/ui/button-variants";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
+import Section from "@/components/ui/section";
+import SectionHeader from "@/components/ui/section-header";
 // Building exteriors
 import buildingExterior1 from "@/assets/gallery-building-exterior-1.jpg";
 import buildingExterior2 from "@/assets/gallery-building-exterior-2.jpg";
@@ -175,17 +176,8 @@ const GallerySection = () => {
   };
 
   return (
-    <section id="gallery" className="pt-32 pb-20 bg-background">
-      <div className="container mx-auto px-4 max-w-7xl">
-        <div className="text-center mb-12">
-          <h2 className="font-display text-4xl font-bold text-primary mb-4">
-            {t.gallery.title}
-          </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto mb-4">
-            {t.gallery.subtitle}
-          </p>
-          <div className="w-24 h-1 bg-gradient-luxury mx-auto"></div>
-        </div>
+    <Section id="gallery" className="pt-32 pb-20 bg-background" maxWidth="max-w-7xl">
+      <SectionHeader title={t.gallery.title} subtitle={t.gallery.subtitle} />
 
         {/* Carousel Gallery */}
         <div className="relative mb-8">
@@ -285,8 +277,7 @@ const GallerySection = () => {
             </div>
           </div>
         )}
-      </div>
-    </section>
+    </Section>
   );
 };
 

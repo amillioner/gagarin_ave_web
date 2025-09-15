@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
-import { Card } from "@/components/ui/card";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
+import Section from "@/components/ui/section";
+import SectionHeader from "@/components/ui/section-header";
+import ElegantCard from "@/components/ui/elegant-card";
 import amenityLounge from "@/assets/amenity-lounge-new.png";
 import amenitySeating from "@/assets/amenity-seating-new.png";
 import amenityGym from "@/assets/amenity-gym-new.png";
@@ -104,17 +106,8 @@ const AmenitiesSection = () => {
   };
 
   return (
-    <section id="amenities" className="pt-32 pb-20 bg-background">
-      <div className="container mx-auto px-4 max-w-7xl">
-        <div className="text-center mb-12">
-          <h2 className="font-display text-4xl font-bold text-primary mb-4">
-            {t.amenities.title}
-          </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto mb-4">
-            {t.amenities.subtitle}
-          </p>
-          <div className="w-24 h-1 bg-gradient-luxury mx-auto"></div>
-        </div>
+    <Section id="amenities" className="pt-32 pb-20 bg-background" maxWidth="max-w-7xl">
+      <SectionHeader title={t.amenities.title} subtitle={t.amenities.subtitle} />
 
         {/* Two-Row Slider */}
         <div className="relative">
@@ -133,9 +126,9 @@ const AmenitiesSection = () => {
               {/* First Row */}
               <div className="flex gap-4">
                 {getCurrentAmenities().slice(0, 3).map((amenity, index) => (
-                  <Card 
+                  <ElegantCard 
                     key={`row1-${currentIndex}-${index}`} 
-                    className="bg-card/95 backdrop-blur-sm shadow-elegant border-border/20 overflow-hidden group hover:shadow-glow transition-all duration-500 cursor-pointer"
+                    className="overflow-hidden cursor-pointer"
                     onClick={() => openLightbox((currentIndex + index) % amenities.length)}
                   >
                     <div className="relative w-80 h-48 overflow-hidden">
@@ -151,16 +144,16 @@ const AmenitiesSection = () => {
                         </h3>
                       </div>
                     </div>
-                  </Card>
+                  </ElegantCard>
                 ))}
               </div>
 
               {/* Second Row */}
               <div className="flex gap-4">
                 {getCurrentAmenities().slice(3, 6).map((amenity, index) => (
-                  <Card 
+                  <ElegantCard 
                     key={`row2-${currentIndex}-${index}`} 
-                    className="bg-card/95 backdrop-blur-sm shadow-elegant border-border/20 overflow-hidden group hover:shadow-glow transition-all duration-500 cursor-pointer"
+                    className="overflow-hidden cursor-pointer"
                     onClick={() => openLightbox((currentIndex + index + 3) % amenities.length)}
                   >
                     <div className="relative w-80 h-48 overflow-hidden">
@@ -176,7 +169,7 @@ const AmenitiesSection = () => {
                         </h3>
                       </div>
                     </div>
-                  </Card>
+                  </ElegantCard>
                 ))}
               </div>
             </div>
@@ -237,8 +230,7 @@ const AmenitiesSection = () => {
             </div>
           </div>
         )}
-      </div>
-    </section>
+    </Section>
   );
 };
 

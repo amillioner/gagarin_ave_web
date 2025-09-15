@@ -1,25 +1,21 @@
-import { Card } from "@/components/ui/card";
 import { MapPin, Clock } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import ContactDialog from "./ContactDialog";
 import { PrimaryButtonFull } from "@/components/ui/button-variants";
+import Section from "@/components/ui/section";
+import SectionHeader from "@/components/ui/section-header";
+import ElegantCard from "@/components/ui/elegant-card";
 
 const LocationSection = () => {
   const { t } = useLanguage();
 
   return (
-    <section id="location" className="pt-32 pb bg-muted/30">
-      <div className="container mx-auto px-4 max-w-6xl">
-        <div className="text-center mb-12">
-          <h2 className="font-display text-4xl font-bold text-primary mb-4">
-            {t.location.title}
-          </h2>
-          <div className="w-24 h-1 bg-gradient-luxury mx-auto"></div>
-        </div>
+    <Section id="location" className="pt-32 pb-20 bg-muted/30">
+      <SectionHeader title={t.location.title} />
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
           {/* Map */}
-          <Card className="bg-card/95 backdrop-blur-sm shadow-elegant border-border/20 overflow-hidden">
+          <ElegantCard className="overflow-hidden">
             <div className="p-6">
               <div className="text-center mb-4">
                 <h3 className="font-display text-2xl font-bold text-primary mb-2 flex items-center justify-center gap-2">
@@ -63,10 +59,10 @@ const LocationSection = () => {
                 </div>
               </div>
             </div>
-          </Card>
+          </ElegantCard>
 
           {/* Connectivity */}
-          <Card className="bg-card/95 backdrop-blur-sm shadow-elegant border-border/20">
+          <ElegantCard>
             <div className="p-6">
               <div className="text-center mb-6">
                 <h3 className="font-display text-2xl font-bold text-primary mb-2 flex items-center justify-center gap-2">
@@ -100,10 +96,9 @@ const LocationSection = () => {
                 />
               </div>
             </div>
-          </Card>
+          </ElegantCard>
         </div>
-      </div>
-    </section>
+    </Section>
   );
 };
 
