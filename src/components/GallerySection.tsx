@@ -176,7 +176,7 @@ const GallerySection = () => {
   };
 
   return (
-    <section id="gallery" className="py-20 bg-background">
+    <section id="gallery" className="pt-32 pb-20 bg-background">
       <div className="container mx-auto px-4 max-w-7xl">
         <div className="text-center mb-12">
           <h2 className="font-display text-4xl font-bold text-primary mb-4" style={{ color: '#B8860B' }}>

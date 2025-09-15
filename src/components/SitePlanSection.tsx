@@ -10,7 +10,7 @@ import unitPlan from "@/assets/unit-plan.jpg";
 const SitePlanSection = () => {
   const { t } = useLanguage();
   return (
-    <section id="site-plan" className="py-20 bg-background">
+    <section id="site-plan" className="pt-32 pb bg-background">
       <div className="container mx-auto px-4 max-w-6xl">
         <div className="text-center mb-12">
           <h2 className="font-display text-4xl font-bold text-primary mb-4">

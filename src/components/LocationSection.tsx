@@ -17,7 +17,7 @@ const LocationSection = () => {
   ];
 
   return (
-    <section id="location" className="py-20 bg-muted/30">
+    <section id="location" className="pt-32 pb bg-muted/30">
       <div className="container mx-auto px-4 max-w-6xl">
         <div className="text-center mb-12">
           <h2 className="font-display text-4xl font-bold text-primary mb-4">
