@@ -40,7 +40,7 @@ const LocationSection = () => {
 
               <div className="text-center">
                 <div className="text-primary font-semibold">
-                  Gagarin Avenue
+                  {t.hero.location}
                 </div>
                 <p className="text-primary font-semibold mb-4">
                   Samarkand, Uzbekistan

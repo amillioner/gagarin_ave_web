@@ -5,6 +5,7 @@ import { Menu, X, Phone, ChevronDown } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import ContactDialog from "./ContactDialog";
 import { PrimaryButton, OutlinePrimaryButtonSmall } from "@/components/ui/button-variants";
+import Logo from "./Logo";
 
 const Navigation = () => {
   const { language, setLanguage, t } = useLanguage();
@@ -40,7 +41,10 @@ const Navigation = () => {
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <div className="font-display text-2xl font-bold text-primary min-w-[200px] whitespace-pre-line">
+          <div 
+            className="font-display text-2xl font-bold text-primary min-w-[200px] whitespace-pre-line cursor-pointer"
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          >
             {t.hero.title}
           </div>
 
