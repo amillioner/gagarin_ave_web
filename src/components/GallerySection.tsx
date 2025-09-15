@@ -1,206 +1,74 @@
-import { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useMemo, useCallback } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import ContactDialog from "./ContactDialog";
 import { PrimaryButton } from "@/components/ui/button-variants";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import Section from "@/components/ui/section";
 import SectionHeader from "@/components/ui/section-header";
-// Building exteriors
-import buildingExterior1 from "@/assets/gallery-building-exterior-1.jpg";
-import buildingExterior2 from "@/assets/gallery-building-exterior-2.jpg";
-import buildingExterior3 from "@/assets/gallery-building-exterior-3.jpg";
-import buildingExterior4 from "@/assets/gallery-building-exterior-4.jpg";
-import buildingExterior5 from "@/assets/gallery-building-exterior-5.jpg";
-import buildingExterior6 from "@/assets/gallery-building-exterior-6.jpg";
+import LazyImage from "@/components/ui/LazyImage";
+import OptimizedImage from "@/components/ui/OptimizedImage";
+import { useLightbox } from "@/hooks/useLightbox";
+import { useTouchSwipe } from "@/hooks/useTouchSwipe";
+import { useSlider } from "@/hooks/useSlider";
+import { GALLERY_IMAGES } from "@/config/assets";
 
-// Interior living spaces
-import interiorLiving1 from "@/assets/gallery-interior-living-1.jpg";
-import interiorLiving2 from "@/assets/gallery-interior-living-2.jpg";
-import interiorLiving3 from "@/assets/gallery-interior-living-3.jpg";
-import interiorLiving4 from "@/assets/gallery-interior-living-4.jpg";
-import interiorLiving5 from "@/assets/gallery-interior-living-5.jpg";
-import interiorLiving6 from "@/assets/gallery-interior-living-6.jpg";
-
-// Amenities
-import amenities1 from "@/assets/gallery-amenities-1.jpg";
-import amenities2 from "@/assets/gallery-amenities-2.jpg";
-import amenities3 from "@/assets/gallery-amenities-3.jpg";
-import amenities4 from "@/assets/gallery-amenities-4.jpg";
-import amenities5 from "@/assets/gallery-amenities-5.jpg";
-import amenities6 from "@/assets/gallery-amenities-6.jpg";
-import amenities7 from "@/assets/gallery-amenities-7.jpg";
-
-const GallerySection = () => {
+const GallerySection = React.memo(() => {
   const { t } = useLanguage();
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
-  const [lightboxIndex, setLightboxIndex] = useState(0);
-  const [touchStart, setTouchStart] = useState<number | null>(null);
-  const [touchEnd, setTouchEnd] = useState<number | null>(null);
   const galleryRef = useRef<HTMLDivElement>(null);
 
-  const galleryImages = [
-    // Building exteriors
-    {
-      image: buildingExterior1,
-      alt: "Modern residential complex exterior with contemporary architectural design"
-    },
-    {
-      image: buildingExterior2,
-      alt: "Elegant building facade showcasing premium finishes and luxury retail spaces"
-    },
-    {
-      image: buildingExterior3,
-      alt: "Contemporary building entrance with sophisticated design elements"
-    },
-    {
-      image: buildingExterior4,
-      alt: "Premium residential development with modern amenities and landscaping"
-    },
-    {
-      image: buildingExterior5,
-      alt: "Luxury building complex with elegant architectural details"
-    },
-    {
-      image: buildingExterior6,
-      alt: "Modern residential complex with contemporary design and green spaces"
-    },
-    
-    // Interior living spaces
-    {
-      image: interiorLiving1,
-      alt: "Luxury living space with high-end interior design and modern amenities"
-    },
-    {
-      image: interiorLiving2,
-      alt: "Elegant interior spaces featuring contemporary finishes and premium fixtures"
-    },
-    {
-      image: interiorLiving3,
-      alt: "Modern residential units with sophisticated styling and luxury amenities"
-    },
-    {
-      image: interiorLiving4,
-      alt: "Contemporary interior design with modern furniture and elegant finishes"
-    },
-    {
-      image: interiorLiving5,
-      alt: "Premium residential spaces with sophisticated design elements"
-    },
-    {
-      image: interiorLiving6,
-      alt: "Luxury living areas with contemporary styling and modern amenities"
-    },
-    
-    // Amenities
-    {
-      image: amenities1,
-      alt: "Luxury amenities and common areas with modern design"
-    },
-    {
-      image: amenities2,
-      alt: "Modern recreational facilities and outdoor spaces"
-    },
-    {
-      image: amenities3,
-      alt: "Premium fitness center and wellness amenities"
-    },
-    {
-      image: amenities4,
-      alt: "Luxury swimming pool and relaxation areas"
-    },
-    {
-      image: amenities5,
-      alt: "Contemporary outdoor spaces and landscaping"
-    },
-    {
-      image: amenities6,
-      alt: "Modern building complex with green spaces and amenities"
-    },
-    {
-      image: amenities7,
-      alt: "Premium residential development overview with luxury amenities"
-    }
-  ];
+  // Use the centralized gallery images
+  const galleryImages = GALLERY_IMAGES;
 
-  const nextSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % galleryImages.length);
-  };
+  // Use the slider hook for carousel functionality
+  const {
+    currentIndex,
+    nextSlide,
+    prevSlide,
+  } = useSlider({
+    totalItems: galleryImages.length,
+    autoPlay: false,
+  });
 
-  const prevSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + galleryImages.length) % galleryImages.length);
-  };
+  // Use the lightbox hook
+  const {
+    isOpen: isLightboxOpen,
+    currentIndex: lightboxIndex,
+    openLightbox,
+    closeLightbox,
+    nextImage: nextLightboxImage,
+    prevImage: prevLightboxImage,
+  } = useLightbox({
+    totalItems: galleryImages.length,
+  });
 
-  const openLightbox = (index: number) => {
-    setLightboxIndex(index);
-    setIsLightboxOpen(true);
-  };
+  // Use touch swipe for mobile navigation
+  const { handleTouchStart, handleTouchMove, handleTouchEnd } = useTouchSwipe({
+    onSwipeLeft: nextSlide,
+    onSwipeRight: prevSlide,
+  });
 
-  const closeLightbox = () => {
-    setIsLightboxOpen(false);
-  };
-
-  const nextLightboxImage = () => {
-    setLightboxIndex((prevIndex) => (prevIndex + 1) % galleryImages.length);
-  };
-
-  const prevLightboxImage = () => {
-    setLightboxIndex((prevIndex) => (prevIndex - 1 + galleryImages.length) % galleryImages.length);
-  };
-
-  // Touch handlers for mobile swipe
-  const handleTouchStart = (e: React.TouchEvent) => {
-    setTouchEnd(null);
-    setTouchStart(e.targetTouches[0].clientX);
-  };
-
-  const handleTouchMove = (e: React.TouchEvent) => {
-    setTouchEnd(e.targetTouches[0].clientX);
-  };
-
-  const handleTouchEnd = () => {
-    if (!touchStart || !touchEnd) return;
-    
-    const distance = touchStart - touchEnd;
-    const isLeftSwipe = distance > 50;
-    const isRightSwipe = distance < -50;
-
-    if (isLeftSwipe) {
-      nextSlide();
-    } else if (isRightSwipe) {
-      prevSlide();
-    }
-  };
-
-  // Handle keyboard events
-  useEffect(() => {
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (isLightboxOpen) {
-        if (event.key === 'Escape') {
-          closeLightbox();
-        } else if (event.key === 'ArrowLeft') {
-          prevLightboxImage();
-        } else if (event.key === 'ArrowRight') {
-          nextLightboxImage();
-        }
-      }
-    };
-
-    document.addEventListener('keydown', handleKeyDown);
-    return () => {
-      document.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [isLightboxOpen]);
-
-  // Get the current 3 images to display in carousel
-  const getCurrentImages = () => {
+  // Memoize the current images for carousel display
+  const currentImages = useMemo(() => {
     const images = [];
     for (let i = 0; i < 3; i++) {
       const index = (currentIndex + i) % galleryImages.length;
       images.push(galleryImages[index]);
     }
     return images;
-  };
+  }, [currentIndex, galleryImages]);
+
+  // Memoize touch handlers
+  const touchHandlers = useMemo(() => ({
+    onTouchStart: handleTouchStart,
+    onTouchMove: handleTouchMove,
+    onTouchEnd: handleTouchEnd,
+  }), [handleTouchStart, handleTouchMove, handleTouchEnd]);
+
+  // Memoize navigation handlers
+  const navigationHandlers = useMemo(() => ({
+    onPrev: prevSlide,
+    onNext: nextSlide,
+  }), [prevSlide, nextSlide]);
 
   return (
     <Section id="gallery" className="pt-32 pb-20 bg-background" maxWidth="max-w-7xl">
@@ -213,27 +81,23 @@ const GallerySection = () => {
             <div 
               ref={galleryRef}
               className="space-y-4"
-              onTouchStart={handleTouchStart}
-              onTouchMove={handleTouchMove}
-              onTouchEnd={handleTouchEnd}
+              {...touchHandlers}
             >
               <div 
                 className="relative rounded-lg overflow-hidden cursor-pointer group"
                 onClick={() => openLightbox(currentIndex)}
               >
-                <div className="relative w-full h-64 sm:h-80 overflow-hidden">
-                  <img 
-                    src={galleryImages[currentIndex].image}
-                    alt={galleryImages[currentIndex].alt}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                </div>
+                <LazyImage
+                  src={galleryImages[currentIndex].image}
+                  alt={galleryImages[currentIndex].alt}
+                  className="w-full h-64 sm:h-80 group-hover:scale-105 transition-transform duration-500"
+                />
               </div>
               
               {/* Mobile Navigation */}
               <div className="flex items-center justify-center gap-4">
                 <button
-                  onClick={prevSlide}
+                  onClick={navigationHandlers.onPrev}
                   className="bg-gray-600 hover:bg-gray-700 text-white rounded-full p-2 shadow-lg transition-all duration-300"
                   aria-label="Previous image"
                 >
@@ -245,7 +109,7 @@ const GallerySection = () => {
                 </span>
                 
                 <button
-                  onClick={nextSlide}
+                  onClick={navigationHandlers.onNext}
                   className="bg-gray-600 hover:bg-gray-700 text-white rounded-full p-2 shadow-lg transition-all duration-300"
                   aria-label="Next image"
                 >
@@ -259,7 +123,7 @@ const GallerySection = () => {
           <div className="hidden lg:flex items-center justify-center gap-4">
             {/* Previous Button */}
             <button
-              onClick={prevSlide}
+              onClick={navigationHandlers.onPrev}
               className="z-10 bg-gray-600 hover:bg-gray-700 text-white rounded-full p-3 shadow-lg transition-all duration-300"
               aria-label="Previous image"
             >
@@ -268,26 +132,24 @@ const GallerySection = () => {
 
             {/* Gallery Images */}
             <div className="flex gap-4 overflow-hidden">
-              {getCurrentImages().map((item, index) => (
+              {currentImages.map((item, index) => (
                 <div 
                   key={`${currentIndex}-${index}`} 
                   className="relative rounded-lg overflow-hidden cursor-pointer group"
                   onClick={() => openLightbox((currentIndex + index) % galleryImages.length)}
                 >
-                  <div className="relative w-80 h-60 overflow-hidden">
-                    <img 
-                      src={item.image}
-                      alt={item.alt}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                  </div>
+                  <LazyImage
+                    src={item.image}
+                    alt={item.alt}
+                    className="w-80 h-60 group-hover:scale-105 transition-transform duration-500"
+                  />
                 </div>
               ))}
             </div>
 
             {/* Next Button */}
             <button
-              onClick={nextSlide}
+              onClick={navigationHandlers.onNext}
               className="z-10 bg-gray-600 hover:bg-gray-700 text-white rounded-full p-3 shadow-lg transition-all duration-300"
               aria-label="Next image"
             >
@@ -330,10 +192,11 @@ const GallerySection = () => {
               </button>
 
               {/* Image */}
-              <img
+              <OptimizedImage
                 src={galleryImages[lightboxIndex].image}
                 alt={galleryImages[lightboxIndex].alt}
                 className="max-w-full max-h-full object-contain rounded-lg"
+                priority={true}
               />
 
               {/* Next Button */}
@@ -354,6 +217,8 @@ const GallerySection = () => {
         )}
     </Section>
   );
-};
+});
+
+GallerySection.displayName = 'GallerySection';
 
 export default GallerySection;

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState, useMemo, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Menu, X, Phone, ChevronDown } from "lucide-react";
@@ -9,23 +9,31 @@ import Logo from "./Logo";
 import { LANGUAGES, NAVIGATION_ITEMS, CONTACT_INFO } from "@/config/constants";
 import { scrollToTop } from "@/utils/helpers";
 
-const Navigation = () => {
+const Navigation = React.memo(() => {
   const { language, setLanguage, t } = useLanguage();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const getCurrentLanguageName = () => {
+  const getCurrentLanguageName = useCallback(() => {
     return LANGUAGES.find(lang => lang.code === language)?.name || "ENG";
-  };
+  }, [language]);
 
-  const handleLanguageChange = (newLanguage: string) => {
+  const handleLanguageChange = useCallback((newLanguage: string) => {
     setLanguage(newLanguage);
-  };
+  }, [setLanguage]);
 
   // Navigation items for the menu
-  const navItems = NAVIGATION_ITEMS.map(item => ({
+  const navItems = useMemo(() => NAVIGATION_ITEMS.map(item => ({
     name: t.nav[item.key as keyof typeof t.nav],
     href: item.href,
-  }));
+  })), [t.nav]);
+
+  const toggleMenu = useCallback(() => {
+    setIsMenuOpen(prev => !prev);
+  }, []);
+
+  const closeMenu = useCallback(() => {
+    setIsMenuOpen(false);
+  }, []);
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-card-luxury/95 backdrop-blur-sm border-b border-border/20">
@@ -125,7 +133,7 @@ const Navigation = () => {
             variant="ghost"
             size="sm"
             className="lg:hidden text-card-luxury-foreground"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            onClick={toggleMenu}
           >
             {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </Button>
@@ -142,7 +150,7 @@ const Navigation = () => {
                     trigger={
                       <button 
                         className="text-card-luxury-foreground hover:text-primary transition-colors duration-300 font-medium py-3 w-full text-left text-base"
-                        onClick={() => setIsMenuOpen(false)}
+                        onClick={closeMenu}
                       >
                         {item.name}
                       </button>
@@ -154,7 +162,7 @@ const Navigation = () => {
                     key={item.name}
                     href={item.href}
                     className="text-card-luxury-foreground hover:text-primary transition-colors duration-300 font-medium py-3 text-base"
-                    onClick={() => setIsMenuOpen(false)}
+                    onClick={closeMenu}
                   >
                     {item.name}
                   </a>
@@ -222,6 +230,8 @@ const Navigation = () => {
       </div>
     </nav>
   );
-};
+});
+
+Navigation.displayName = 'Navigation';
 
 export default Navigation;

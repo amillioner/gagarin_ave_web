@@ -1,14 +1,17 @@
+import React, { Suspense } from "react";
 import Navigation from "@/components/Navigation";
 import HeroSlider from "@/components/HeroSlider";
-import InquiryForm from "@/components/InquiryForm";
 import PricingSection from "@/components/PricingSection";
-import SitePlanSection from "@/components/SitePlanSection";
-import AmenitiesSection from "@/components/AmenitiesSection";
-import GallerySection from "@/components/GallerySection";
-import LocationSection from "@/components/LocationSection";
-import Footer from "@/components/Footer";
+import LazyWrapper from "@/components/ui/LazyWrapper";
+import {
+  LazyGallerySection,
+  LazyAmenitiesSection,
+  LazySitePlanSection,
+  LazyLocationSection,
+  LazyFooter,
+} from "@/components/LazyComponents";
 
-const Index = () => {
+const Index = React.memo(() => {
   return (
     <div className="min-h-screen bg-background">
       {/* Navigation */}
@@ -24,22 +27,34 @@ const Index = () => {
 
       {/* Site Plan Section */}
       <section id="siteplan">
-        <SitePlanSection />
+        <LazyWrapper minHeight="400px">
+          <LazySitePlanSection />
+        </LazyWrapper>
       </section>
 
       {/* Amenities Section */}
-      <AmenitiesSection />
+      <LazyWrapper minHeight="600px">
+        <LazyAmenitiesSection />
+      </LazyWrapper>
 
       {/* Gallery Section */}
-      <GallerySection />
+      <LazyWrapper minHeight="500px">
+        <LazyGallerySection />
+      </LazyWrapper>
 
       {/* Location Section */}
-      <LocationSection />
+      <LazyWrapper minHeight="400px">
+        <LazyLocationSection />
+      </LazyWrapper>
 
       {/* Footer */}
-      <Footer />
+      <LazyWrapper minHeight="200px">
+        <LazyFooter />
+      </LazyWrapper>
     </div>
   );
-};
+});
+
+Index.displayName = 'Index';
 
 export default Index;

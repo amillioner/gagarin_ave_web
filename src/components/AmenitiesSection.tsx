@@ -1,109 +1,72 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo, useCallback } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import Section from "@/components/ui/section";
 import SectionHeader from "@/components/ui/section-header";
 import ElegantCard from "@/components/ui/elegant-card";
-import amenityLounge from "@/assets/amenity-lounge-new.png";
-import amenitySeating from "@/assets/amenity-seating-new.png";
-import amenityGym from "@/assets/amenity-gym-new.png";
-import amenityRetail from "@/assets/amenity-retail-new.png";
-import amenityPool from "@/assets/amenity-pool-new.png";
-import amenityYoga from "@/assets/amenity-yoga-new.png";
+import LazyImage from "@/components/ui/LazyImage";
+import OptimizedImage from "@/components/ui/OptimizedImage";
+import { AMENITY_IMAGES } from "@/config/assets";
+import { useLightbox } from "@/hooks/useLightbox";
+import { useSlider } from "@/hooks/useSlider";
 
-const AmenitiesSection = () => {
+const AmenitiesSection = React.memo(() => {
   const { t } = useLanguage();
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
-  const [lightboxIndex, setLightboxIndex] = useState(0);
   
-  const amenities = [
-    {
-      title: t.amenities.items.residentLounge,
-      image: amenityLounge,
-      alt: "Premium resident lounge with luxury furnishings and modern design"
-    },
-    {
-      title: t.amenities.items.shadedSeating,
-      image: amenitySeating,
-      alt: "Elegant outdoor seating areas with contemporary landscape design"
-    },
-    {
-      title: t.amenities.items.gymFitness,
-      image: amenityGym,
-      alt: "State-of-the-art fitness center with premium equipment and amenities"
-    },
-    {
-      title: t.amenities.items.retailArea,
-      image: amenityRetail,
-      alt: "Modern retail spaces with upscale shopping and dining options"
-    },
-    {
-      title: t.amenities.items.swimmingPool,
-      image: amenityPool,
-      alt: "Luxury swimming pool with resort-style deck and relaxation areas"
-    },
-    {
-      title: t.amenities.items.yogaPlatform,
-      image: amenityYoga,
-      alt: "Tranquil yoga and wellness platform with serene outdoor setting"
-    }
-  ];
-
-  const nextSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % Math.max(1, amenities.length - 2));
-  };
-
-  const prevSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + Math.max(1, amenities.length - 2)) % Math.max(1, amenities.length - 2));
-  };
-
-  const openLightbox = (index: number) => {
-    setLightboxIndex(index);
-    setIsLightboxOpen(true);
-  };
-
-  const closeLightbox = () => {
-    setIsLightboxOpen(false);
-  };
-
-  const nextLightboxImage = () => {
-    setLightboxIndex((prevIndex) => (prevIndex + 1) % amenities.length);
-  };
-
-  const prevLightboxImage = () => {
-    setLightboxIndex((prevIndex) => (prevIndex - 1 + amenities.length) % amenities.length);
-  };
-
-  // Handle keyboard events
-  useEffect(() => {
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (isLightboxOpen) {
-        if (event.key === 'Escape') {
-          closeLightbox();
-        } else if (event.key === 'ArrowLeft') {
-          prevLightboxImage();
-        } else if (event.key === 'ArrowRight') {
-          nextLightboxImage();
-        }
-      }
+  // Use the centralized amenity images and map to localized titles
+  const amenities = useMemo(() => AMENITY_IMAGES.map((amenity, index) => {
+    const titles = [
+      t.amenities.items.residentLounge,
+      t.amenities.items.shadedSeating,
+      t.amenities.items.gymFitness,
+      t.amenities.items.retailArea,
+      t.amenities.items.swimmingPool,
+      t.amenities.items.yogaPlatform,
+    ];
+    
+    return {
+      ...amenity,
+      title: titles[index] || amenity.alt,
     };
+  }), [t.amenities.items]);
 
-    document.addEventListener('keydown', handleKeyDown);
-    return () => {
-      document.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [isLightboxOpen]);
+  // Use the slider hook for carousel functionality
+  const {
+    currentIndex,
+    nextSlide,
+    prevSlide,
+  } = useSlider({
+    totalItems: Math.max(1, amenities.length - 2),
+    autoPlay: false,
+  });
 
-  // Get the current 6 amenities to display in 2 rows of 3
-  const getCurrentAmenities = () => {
+  // Use the lightbox hook
+  const {
+    isOpen: isLightboxOpen,
+    currentIndex: lightboxIndex,
+    openLightbox,
+    closeLightbox,
+    nextImage: nextLightboxImage,
+    prevImage: prevLightboxImage,
+  } = useLightbox({
+    totalItems: amenities.length,
+  });
+
+  // Memoize the current amenities for display
+  const currentAmenities = useMemo(() => {
     const items = [];
     for (let i = 0; i < 6; i++) {
       const index = (currentIndex + i) % amenities.length;
       items.push(amenities[index]);
     }
     return items;
-  };
+  }, [currentIndex, amenities]);
+
+  // Memoize navigation handlers
+  const navigationHandlers = useMemo(() => ({
+    onPrev: prevSlide,
+    onNext: nextSlide,
+  }), [prevSlide, nextSlide]);
 
   return (
     <Section id="amenities" className="pt-32 pb-20 bg-background" maxWidth="max-w-7xl">
@@ -121,10 +84,10 @@ const AmenitiesSection = () => {
                   onClick={() => openLightbox(index)}
                 >
                   <div className="relative w-full h-48 sm:h-56 overflow-hidden">
-                    <img 
+                    <LazyImage
                       src={amenity.image}
                       alt={amenity.alt}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      className="w-full h-full group-hover:scale-105 transition-transform duration-500"
                     />
                     <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300"></div>
                     <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-4">
@@ -142,7 +105,7 @@ const AmenitiesSection = () => {
           <div className="hidden lg:flex items-center justify-center gap-4">
             {/* Previous Button */}
             <button
-              onClick={prevSlide}
+              onClick={navigationHandlers.onPrev}
               className="z-10 bg-gray-600 hover:bg-gray-700 text-white rounded-full p-3 shadow-lg transition-all duration-300"
               aria-label="Previous amenities"
             >
@@ -153,17 +116,17 @@ const AmenitiesSection = () => {
             <div className="flex flex-col gap-4 overflow-hidden">
               {/* First Row */}
               <div className="flex gap-4">
-                {getCurrentAmenities().slice(0, 3).map((amenity, index) => (
+                {currentAmenities.slice(0, 3).map((amenity, index) => (
                   <ElegantCard 
                     key={`row1-${currentIndex}-${index}`} 
                     className="overflow-hidden cursor-pointer"
                     onClick={() => openLightbox((currentIndex + index) % amenities.length)}
                   >
                     <div className="relative w-80 h-48 overflow-hidden">
-                      <img 
+                      <LazyImage
                         src={amenity.image}
                         alt={amenity.alt}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        className="w-full h-full group-hover:scale-105 transition-transform duration-500"
                       />
                       <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300"></div>
                       <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-4">
@@ -178,17 +141,17 @@ const AmenitiesSection = () => {
 
               {/* Second Row */}
               <div className="flex gap-4">
-                {getCurrentAmenities().slice(3, 6).map((amenity, index) => (
+                {currentAmenities.slice(3, 6).map((amenity, index) => (
                   <ElegantCard 
                     key={`row2-${currentIndex}-${index}`} 
                     className="overflow-hidden cursor-pointer"
                     onClick={() => openLightbox((currentIndex + index + 3) % amenities.length)}
                   >
                     <div className="relative w-80 h-48 overflow-hidden">
-                      <img 
+                      <LazyImage
                         src={amenity.image}
                         alt={amenity.alt}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        className="w-full h-full group-hover:scale-105 transition-transform duration-500"
                       />
                       <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300"></div>
                       <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-4">
@@ -204,7 +167,7 @@ const AmenitiesSection = () => {
 
             {/* Next Button */}
             <button
-              onClick={nextSlide}
+              onClick={navigationHandlers.onNext}
               className="z-10 bg-gray-600 hover:bg-gray-700 text-white rounded-full p-3 shadow-lg transition-all duration-300"
               aria-label="Next amenities"
             >
@@ -236,10 +199,11 @@ const AmenitiesSection = () => {
               </button>
 
               {/* Image */}
-              <img
+              <OptimizedImage
                 src={amenities[lightboxIndex].image}
                 alt={amenities[lightboxIndex].alt}
                 className="max-w-full max-h-full object-contain rounded-lg"
+                priority={true}
               />
 
               {/* Next Button */}
@@ -260,6 +224,8 @@ const AmenitiesSection = () => {
         )}
     </Section>
   );
-};
+});
+
+AmenitiesSection.displayName = 'AmenitiesSection';
 
 export default AmenitiesSection;

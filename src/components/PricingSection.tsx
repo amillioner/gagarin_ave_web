@@ -1,3 +1,4 @@
+import React, { useMemo } from "react";
 import { Home, Maximize } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import ContactDialog from "./ContactDialog";
@@ -7,17 +8,17 @@ import SectionHeader from "@/components/ui/section-header";
 import ElegantCard from "@/components/ui/elegant-card";
 import { PRICING_DATA } from "@/config/constants";
 
-const PricingSection = () => {
+const PricingSection = React.memo(() => {
   const { t } = useLanguage();
   
-  const apartments = PRICING_DATA.apartments.map((apt, index) => ({
+  const apartments = useMemo(() => PRICING_DATA.apartments.map((apt, index) => ({
     type: index === 0 ? t.pricing.bedrooms.one : 
           index === 1 ? t.pricing.bedrooms.two : 
           t.pricing.bedrooms.three,
     area: apt.area,
     price: apt.price,
     usdPrice: apt.usdPrice,
-  }));
+  })), [t.pricing.bedrooms]);
 
   return (
     <Section id="price" className="pt-32 pb-20 bg-muted/30">
@@ -142,6 +143,8 @@ const PricingSection = () => {
         </div>
     </Section>
   );
-};
+});
+
+PricingSection.displayName = 'PricingSection';
 
 export default PricingSection;
