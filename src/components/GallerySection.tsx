@@ -1,22 +1,34 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { useLanguage } from "@/contexts/LanguageContext";
 import InquiryForm from "./InquiryForm";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
-import gallery4 from "@/assets/gallery-4.jpg";
-import gallery5 from "@/assets/gallery-5.jpg";
-import gallery6 from "@/assets/gallery-6.jpg";
-import gallery7 from "@/assets/gallery-7.jpg";
-import gallery8 from "@/assets/gallery-8.jpg";
-import gallery9 from "@/assets/gallery-9.jpg";
-import gallery10 from "@/assets/gallery-10.jpg";
-import gallery11 from "@/assets/gallery-11.jpg";
-import gallery12 from "@/assets/gallery-12.jpg";
-import gallery13 from "@/assets/gallery-13.jpg";
-import gallery14 from "@/assets/gallery-14.jpg";
-import gallery15 from "@/assets/gallery-15.jpg";
+// Building exteriors
+import buildingExterior1 from "@/assets/gallery-building-exterior-1.jpg";
+import buildingExterior2 from "@/assets/gallery-building-exterior-2.jpg";
+import buildingExterior3 from "@/assets/gallery-building-exterior-3.jpg";
+import buildingExterior4 from "@/assets/gallery-building-exterior-4.jpg";
+import buildingExterior5 from "@/assets/gallery-building-exterior-5.jpg";
+import buildingExterior6 from "@/assets/gallery-building-exterior-6.jpg";
+
+// Interior living spaces
+import interiorLiving1 from "@/assets/gallery-interior-living-1.jpg";
+import interiorLiving2 from "@/assets/gallery-interior-living-2.jpg";
+import interiorLiving3 from "@/assets/gallery-interior-living-3.jpg";
+import interiorLiving4 from "@/assets/gallery-interior-living-4.jpg";
+import interiorLiving5 from "@/assets/gallery-interior-living-5.jpg";
+import interiorLiving6 from "@/assets/gallery-interior-living-6.jpg";
+
+// Amenities
+import amenities1 from "@/assets/gallery-amenities-1.jpg";
+import amenities2 from "@/assets/gallery-amenities-2.jpg";
+import amenities3 from "@/assets/gallery-amenities-3.jpg";
+import amenities4 from "@/assets/gallery-amenities-4.jpg";
+import amenities5 from "@/assets/gallery-amenities-5.jpg";
+import amenities6 from "@/assets/gallery-amenities-6.jpg";
+import amenities7 from "@/assets/gallery-amenities-7.jpg";
 
 const GallerySection = () => {
   const { t } = useLanguage();
@@ -25,53 +37,86 @@ const GallerySection = () => {
   const [lightboxIndex, setLightboxIndex] = useState(0);
 
   const galleryImages = [
+    // Building exteriors
     {
-      image: gallery4,
-      alt: "Modern living space with premium finishes and natural lighting"
+      image: buildingExterior1,
+      alt: "Modern residential complex exterior with contemporary architectural design"
     },
     {
-      image: gallery5,
-      alt: "Contemporary kitchen design with high-end appliances and elegant cabinetry"
+      image: buildingExterior2,
+      alt: "Elegant building facade showcasing premium finishes and luxury retail spaces"
     },
     {
-      image: gallery6,
-      alt: "Spacious bedroom with luxury amenities and modern design elements"
+      image: buildingExterior3,
+      alt: "Contemporary building entrance with sophisticated design elements"
     },
     {
-      image: gallery7,
-      alt: "Elegant bathroom with premium fixtures and sophisticated styling"
+      image: buildingExterior4,
+      alt: "Premium residential development with modern amenities and landscaping"
     },
     {
-      image: gallery8,
-      alt: "Beautiful outdoor terrace with city views and modern furniture"
+      image: buildingExterior5,
+      alt: "Luxury building complex with elegant architectural details"
     },
     {
-      image: gallery9,
-      alt: "Luxury amenity space with state-of-the-art fitness equipment"
+      image: buildingExterior6,
+      alt: "Modern residential complex with contemporary design and green spaces"
+    },
+    
+    // Interior living spaces
+    {
+      image: interiorLiving1,
+      alt: "Luxury living space with high-end interior design and modern amenities"
     },
     {
-      image: gallery10,
-      alt: "Resort-style pool area with cabanas and relaxation spaces"
+      image: interiorLiving2,
+      alt: "Elegant interior spaces featuring contemporary finishes and premium fixtures"
     },
     {
-      image: gallery11,
-      alt: "Modern lobby with contemporary design and welcoming atmosphere"
+      image: interiorLiving3,
+      alt: "Modern residential units with sophisticated styling and luxury amenities"
     },
     {
-      image: gallery12,
-      alt: "Premium unit interior showcasing high-end finishes and spacious layout"
+      image: interiorLiving4,
+      alt: "Contemporary interior design with modern furniture and elegant finishes"
     },
     {
-      image: gallery13,
-      alt: "Elegant dining area with modern fixtures and sophisticated design"
+      image: interiorLiving5,
+      alt: "Premium residential spaces with sophisticated design elements"
     },
     {
-      image: gallery14,
-      alt: "Luxury amenity lounge with comfortable seating and modern amenities"
+      image: interiorLiving6,
+      alt: "Luxury living areas with contemporary styling and modern amenities"
+    },
+    
+    // Amenities
+    {
+      image: amenities1,
+      alt: "Luxury amenities and common areas with modern design"
     },
     {
-      image: gallery15,
-      alt: "Beautiful exterior view showcasing the building's modern architecture"
+      image: amenities2,
+      alt: "Modern recreational facilities and outdoor spaces"
+    },
+    {
+      image: amenities3,
+      alt: "Premium fitness center and wellness amenities"
+    },
+    {
+      image: amenities4,
+      alt: "Luxury swimming pool and relaxation areas"
+    },
+    {
+      image: amenities5,
+      alt: "Contemporary outdoor spaces and landscaping"
+    },
+    {
+      image: amenities6,
+      alt: "Modern building complex with green spaces and amenities"
+    },
+    {
+      image: amenities7,
+      alt: "Premium residential development overview with luxury amenities"
     }
   ];
 
@@ -99,6 +144,26 @@ const GallerySection = () => {
   const prevLightboxImage = () => {
     setLightboxIndex((prevIndex) => (prevIndex - 1 + galleryImages.length) % galleryImages.length);
   };
+
+  // Handle keyboard events
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (isLightboxOpen) {
+        if (event.key === 'Escape') {
+          closeLightbox();
+        } else if (event.key === 'ArrowLeft') {
+          prevLightboxImage();
+        } else if (event.key === 'ArrowRight') {
+          nextLightboxImage();
+        }
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isLightboxOpen]);
 
   // Get the current 3 images to display in carousel
   const getCurrentImages = () => {
