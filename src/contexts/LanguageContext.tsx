@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, ReactNode } from 'react';
+import { DEFAULT_LANGUAGE } from '@/config/constants';
 
 export interface Translation {
   nav: {
@@ -441,7 +442,7 @@ interface LanguageContextType {
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export const LanguageProvider = ({ children }: { children: ReactNode }) => {
-  const [language, setLanguage] = useState('uz');
+  const [language, setLanguage] = useState(DEFAULT_LANGUAGE);
 
   const value = {
     language,

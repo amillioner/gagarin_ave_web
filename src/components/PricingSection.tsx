@@ -5,29 +5,19 @@ import { PrimaryButton } from "@/components/ui/button-variants";
 import Section from "@/components/ui/section";
 import SectionHeader from "@/components/ui/section-header";
 import ElegantCard from "@/components/ui/elegant-card";
+import { PRICING_DATA } from "@/config/constants";
 
 const PricingSection = () => {
   const { t } = useLanguage();
-  const apartments = [
-    {
-      type: t.pricing.bedrooms.one,
-      area: "81.00 м²",
-      price: "UZS 995.3 M",
-      usdPrice: "USD 77.8K",
-    },
-    {
-      type: t.pricing.bedrooms.two, 
-      area: "86.00 м²",
-      price: "UZS 1.06 B",
-      usdPrice: "USD 82.6K",
-    },
-    {
-      type: t.pricing.bedrooms.three,
-      area: "91.5 м²", 
-      price: "UZS 1.12 B",
-      usdPrice: "USD 87.8K",
-    },
-  ];
+  
+  const apartments = PRICING_DATA.apartments.map((apt, index) => ({
+    type: index === 0 ? t.pricing.bedrooms.one : 
+          index === 1 ? t.pricing.bedrooms.two : 
+          t.pricing.bedrooms.three,
+    area: apt.area,
+    price: apt.price,
+    usdPrice: apt.usdPrice,
+  }));
 
   return (
     <Section id="price" className="pt-32 pb-20 bg-muted/30">
@@ -140,18 +130,14 @@ const PricingSection = () => {
         {/* Additional Info */}
         <div className="text-center mt-8">
           <p className="text-muted-foreground mb-4">
-            {t.pricing.inclusiveNote}
+            {PRICING_DATA.inclusiveNote}
           </p>
           <div className="flex flex-wrap justify-center gap-4 text-sm">
-            <span className="bg-primary/10 text-primary px-4 py-2 rounded-full font-medium">
-              ✓ {t.pricing.readyToMove}
-            </span>
-            <span className="bg-primary/10 text-primary px-4 py-2 rounded-full font-medium">
-              ✓ {t.pricing.premiumFinishes}
-            </span>
-            <span className="bg-primary/10 text-primary px-4 py-2 rounded-full font-medium">
-              ✓ {t.pricing.worldClassAmenities}
-            </span>
+            {PRICING_DATA.features.map((feature, index) => (
+              <span key={index} className="bg-primary/10 text-primary px-4 py-2 rounded-full font-medium">
+                ✓ {feature}
+              </span>
+            ))}
           </div>
         </div>
     </Section>

@@ -5,6 +5,7 @@ import { PrimaryButtonFull } from "@/components/ui/button-variants";
 import Section from "@/components/ui/section";
 import SectionHeader from "@/components/ui/section-header";
 import ElegantCard from "@/components/ui/elegant-card";
+import { CONNECTIVITY_DATA, CONTACT_INFO, APP_CONFIG } from "@/config/constants";
 
 const LocationSection = () => {
   const { t } = useLanguage();
@@ -16,7 +17,7 @@ const LocationSection = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
           {/* Map */}
           <ElegantCard className="overflow-hidden">
-            <div className="p-6">
+            <div className="p-8">
               <div className="text-center mb-4">
                 <h3 className="font-display text-2xl font-bold text-primary mb-2 flex items-center justify-center gap-2">
                   <MapPin className="h-6 w-6 text-primary" />
@@ -40,22 +41,16 @@ const LocationSection = () => {
 
               <div className="text-center">
                 <div className="text-primary font-semibold">
-                  {t.hero.location}
+                  {APP_CONFIG.location}
                 </div>
-                <p className="text-primary font-semibold mb-4">
-                  Samarkand, Uzbekistan
-                </p>
                 <div className="space-y-2">
-                  <div className="text-primary font-semibold">
-                    <a href="tel:+998662300171" className="hover:underline">
-                      +(998) 66 230-01-71
-                    </a>
-                  </div>
-                  <div className="text-primary font-semibold">
-                    <a href="tel:+998955005555" className="hover:underline">
-                      +(998) 95 500-55-55
-                    </a>
-                  </div>
+                  {CONTACT_INFO.phones.map((phone) => (
+                    <div key={phone.number} className="text-primary font-semibold">
+                      <a href={`tel:${phone.number}`} className="hover:underline">
+                        {phone.display}
+                      </a>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
@@ -73,7 +68,7 @@ const LocationSection = () => {
               </div>
 
               <div className="space-y-4 mb-6">
-                {t.location.connectivityData.map((item, index) => (
+                {CONNECTIVITY_DATA.map((item, index) => (
                   <div key={index} className="flex items-center justify-between p-3 bg-background/50 rounded-lg border border-border/20 hover:bg-background/80 transition-colors duration-300">
                     <div className="flex items-center gap-3">
                       <MapPin className="h-4 w-4 text-primary flex-shrink-0" />

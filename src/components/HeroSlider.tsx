@@ -1,64 +1,29 @@
-import { useState, useEffect, useRef } from "react";
+import { useRef } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import main0 from "@/assets/main-0.jpg";
-import main1 from "@/assets/main-1.jpg";
-import main2 from "@/assets/main-2.jpg";
-import heroNew1 from "@/assets/hero-new-1.jpg";
-import heroNew2 from "@/assets/hero-new-2.jpg";
-import heroNew3 from "@/assets/hero-new-3.jpg";
+import { HERO_IMAGES } from "@/config/assets";
+import { SLIDER_CONFIG } from "@/config/constants";
+import { useSlider } from "@/hooks/useSlider";
+import { useTouchSwipe } from "@/hooks/useTouchSwipe";
 
 const HeroSlider = () => {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [touchStart, setTouchStart] = useState<number | null>(null);
-  const [touchEnd, setTouchEnd] = useState<number | null>(null);
   const sliderRef = useRef<HTMLDivElement>(null);
   
-  const slides = [
-    { image: main1, alt: "Gagarin Avenue luxury residential complex - aerial view" },
-    { image: main0, alt: "Gagarin Avenue luxury residential complex - main view" },
-    { image: main2, alt: "Gagarin Avenue luxury residential complex - side view" },
-    { image: heroNew1, alt: "Modern luxury residential complex on Gagarin Avenue" },
-    { image: heroNew2, alt: "Luxury apartment building exterior at sunset" },
-    { image: heroNew3, alt: "Aerial view of modern luxury residential complex" },
-  ];
+  const {
+    currentIndex: currentSlide,
+    nextSlide,
+    prevSlide,
+  } = useSlider({
+    totalItems: HERO_IMAGES.length,
+    autoPlay: true,
+    autoPlayInterval: SLIDER_CONFIG.autoPlayInterval,
+  });
 
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % slides.length);
-  };
-
-  const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
-  };
-
-  // Touch handlers for mobile swipe
-  const handleTouchStart = (e: React.TouchEvent) => {
-    setTouchEnd(null);
-    setTouchStart(e.targetTouches[0].clientX);
-  };
-
-  const handleTouchMove = (e: React.TouchEvent) => {
-    setTouchEnd(e.targetTouches[0].clientX);
-  };
-
-  const handleTouchEnd = () => {
-    if (!touchStart || !touchEnd) return;
-    
-    const distance = touchStart - touchEnd;
-    const isLeftSwipe = distance > 50;
-    const isRightSwipe = distance < -50;
-
-    if (isLeftSwipe) {
-      nextSlide();
-    } else if (isRightSwipe) {
-      prevSlide();
-    }
-  };
-
-  useEffect(() => {
-    const interval = setInterval(nextSlide, 5000);
-    return () => clearInterval(interval);
-  }, []);
+  const { handleTouchStart, handleTouchMove, handleTouchEnd } = useTouchSwipe({
+    onSwipeLeft: nextSlide,
+    onSwipeRight: prevSlide,
+    threshold: SLIDER_CONFIG.touchSensitivity,
+  });
 
   return (
     <div 
@@ -70,10 +35,10 @@ const HeroSlider = () => {
     >
       {/* Image Slides */}
       <div className="relative w-full h-full">
-        {slides.map((slide, index) => (
+        {HERO_IMAGES.map((slide, index) => (
           <div
             key={index}
-            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+            className={`absolute inset-0 transition-opacity duration-${SLIDER_CONFIG.transitionDuration} ease-in-out ${
               index === currentSlide ? "opacity-100" : "opacity-0"
             }`}
           >
@@ -108,7 +73,7 @@ const HeroSlider = () => {
 
       {/* Slide Indicators */}
       <div className="absolute bottom-4 md:bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-2 md:space-x-3">
-        {slides.map((_, index) => (
+        {HERO_IMAGES.map((_, index) => (
           <button
             key={index}
             className={`w-2 h-2 md:w-3 md:h-3 rounded-full transition-all duration-300 ${

@@ -7,6 +7,8 @@ import { Phone, Mail, User, Shield, Clock, Award } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { PrimaryButtonFullLarge } from "@/components/ui/button-variants";
+import { useFormValidation } from "@/hooks/useFormValidation";
+import { sanitizeInput } from "@/utils/validation";
 
 const InquiryForm = () => {
   const { t } = useLanguage();
@@ -18,13 +20,16 @@ const InquiryForm = () => {
   });
   
   const { toast } = useToast();
+  const { errors, validateForm, clearErrors } = useFormValidation();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.consent) {
+    clearErrors();
+    
+    if (!validateForm(formData)) {
       toast({
-        title: "Consent Required",
-        description: t.form.consentRequired,
+        title: "Validation Error",
+        description: "Please check the form for errors",
         variant: "destructive",
       });
       return;
@@ -40,7 +45,9 @@ const InquiryForm = () => {
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    const sanitizedValue = sanitizeInput(value);
+    setFormData({ ...formData, [name]: sanitizedValue });
   };
 
   return (
@@ -57,10 +64,15 @@ const InquiryForm = () => {
               name="name"
               value={formData.name}
               onChange={handleInputChange}
-              className="pl-10 bg-background/80 border-border/40 focus:border-primary"
+              className={`pl-10 bg-background/80 border-border/40 focus:border-primary ${
+                errors.name ? 'border-red-500' : ''
+              }`}
               placeholder={t.form.name}
               required
             />
+            {errors.name && (
+              <p className="text-red-500 text-xs mt-1">{errors.name}</p>
+            )}
           </div>
         </div>
 
@@ -76,10 +88,15 @@ const InquiryForm = () => {
               type="tel"
               value={formData.phone}
               onChange={handleInputChange}
-              className="pl-10 bg-background/80 border-border/40 focus:border-primary"
+              className={`pl-10 bg-background/80 border-border/40 focus:border-primary ${
+                errors.phone ? 'border-red-500' : ''
+              }`}
               placeholder="+(998) 95 500-55-55"
               required
             />
+            {errors.phone && (
+              <p className="text-red-500 text-xs mt-1">{errors.phone}</p>
+            )}
           </div>
         </div>
 
@@ -95,10 +112,15 @@ const InquiryForm = () => {
               type="email"
               value={formData.email}
               onChange={handleInputChange}
-              className="pl-10 bg-background/80 border-border/40 focus:border-primary"
+              className={`pl-10 bg-background/80 border-border/40 focus:border-primary ${
+                errors.email ? 'border-red-500' : ''
+              }`}
               placeholder={t.form.email}
               required
             />
+            {errors.email && (
+              <p className="text-red-500 text-xs mt-1">{errors.email}</p>
+            )}
           </div>
         </div>
 
@@ -116,6 +138,9 @@ const InquiryForm = () => {
             <span className="text-primary underline cursor-pointer">{t.form.privacyPolicy}</span> |{" "}
             <span className="text-primary underline cursor-pointer">{t.form.termsConditions}</span>.
           </Label>
+          {errors.consent && (
+            <p className="text-red-500 text-xs mt-1">{errors.consent}</p>
+          )}
         </div>
 
           <PrimaryButtonFullLarge className="mt-6">
