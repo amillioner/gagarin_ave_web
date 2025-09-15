@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import ContactDialog from "./ContactDialog";
 import { PrimaryButton } from "@/components/ui/button-variants";
@@ -35,6 +35,9 @@ const GallerySection = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
+  const galleryRef = useRef<HTMLDivElement>(null);
 
   const galleryImages = [
     // Building exteriors
@@ -145,6 +148,30 @@ const GallerySection = () => {
     setLightboxIndex((prevIndex) => (prevIndex - 1 + galleryImages.length) % galleryImages.length);
   };
 
+  // Touch handlers for mobile swipe
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > 50;
+    const isRightSwipe = distance < -50;
+
+    if (isLeftSwipe) {
+      nextSlide();
+    } else if (isRightSwipe) {
+      prevSlide();
+    }
+  };
+
   // Handle keyboard events
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -179,9 +206,57 @@ const GallerySection = () => {
     <Section id="gallery" className="pt-32 pb-20 bg-background" maxWidth="max-w-7xl">
       <SectionHeader title={t.gallery.title} subtitle={t.gallery.subtitle} />
 
-        {/* Carousel Gallery */}
+        {/* Mobile: Single Image, Desktop: Carousel Gallery */}
         <div className="relative mb-8">
-          <div className="flex items-center justify-center gap-4">
+          {/* Mobile Layout - Single Image */}
+          <div className="block lg:hidden">
+            <div 
+              ref={galleryRef}
+              className="space-y-4"
+              onTouchStart={handleTouchStart}
+              onTouchMove={handleTouchMove}
+              onTouchEnd={handleTouchEnd}
+            >
+              <div 
+                className="relative rounded-lg overflow-hidden cursor-pointer group"
+                onClick={() => openLightbox(currentIndex)}
+              >
+                <div className="relative w-full h-64 sm:h-80 overflow-hidden">
+                  <img 
+                    src={galleryImages[currentIndex].image}
+                    alt={galleryImages[currentIndex].alt}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+              </div>
+              
+              {/* Mobile Navigation */}
+              <div className="flex items-center justify-center gap-4">
+                <button
+                  onClick={prevSlide}
+                  className="bg-gray-600 hover:bg-gray-700 text-white rounded-full p-2 shadow-lg transition-all duration-300"
+                  aria-label="Previous image"
+                >
+                  <ChevronLeft className="w-5 h-5" />
+                </button>
+                
+                <span className="text-sm text-muted-foreground">
+                  {currentIndex + 1} / {galleryImages.length}
+                </span>
+                
+                <button
+                  onClick={nextSlide}
+                  className="bg-gray-600 hover:bg-gray-700 text-white rounded-full p-2 shadow-lg transition-all duration-300"
+                  aria-label="Next image"
+                >
+                  <ChevronRight className="w-5 h-5" />
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* Desktop Layout - Carousel Gallery */}
+          <div className="hidden lg:flex items-center justify-center gap-4">
             {/* Previous Button */}
             <button
               onClick={prevSlide}

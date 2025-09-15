@@ -44,7 +44,7 @@ const InquiryForm = () => {
   };
 
   return (
-    <Card className="bg-card/95 backdrop-blur-sm shadow-elegant border-border/20 p-8 max-w-md">
+    <Card className="bg-card/95 backdrop-blur-sm shadow-elegant border-border/20 p-4 sm:p-6 md:p-8 max-w-md">
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
           <Label htmlFor="name" className="text-sm font-medium text-foreground">
@@ -124,17 +124,17 @@ const InquiryForm = () => {
       </form>
 
       {/* Trust Indicators */}
-      <div className="flex justify-around items-center mt-6 pt-6 border-t border-border/20">
+      <div className="flex flex-col sm:flex-row justify-around items-center mt-6 pt-6 border-t border-border/20 space-y-2 sm:space-y-0">
         <div className="text-center">
-          <Clock className="h-6 w-6 mx-auto mb-1 text-primary" />
+          <Clock className="h-5 w-5 sm:h-6 sm:w-6 mx-auto mb-1 text-primary" />
           <p className="text-xs text-muted-foreground">{t.form.trustIndicators.support}</p>
         </div>
         <div className="text-center">
-          <Shield className="h-6 w-6 mx-auto mb-1 text-primary" />
+          <Shield className="h-5 w-5 sm:h-6 sm:w-6 mx-auto mb-1 text-primary" />
           <p className="text-xs text-muted-foreground">{t.form.trustIndicators.secure}</p>
         </div>
         <div className="text-center">
-          <Award className="h-6 w-6 mx-auto mb-1 text-primary" />
+          <Award className="h-5 w-5 sm:h-6 sm:w-6 mx-auto mb-1 text-primary" />
           <p className="text-xs text-muted-foreground">{t.form.trustIndicators.certified}</p>
         </div>
       </div>

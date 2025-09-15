@@ -34,9 +34,9 @@ const PricingSection = () => {
       <SectionHeader title={t.pricing.title} />
 
         <ElegantCard className="overflow-hidden">
-          {/* Table Header */}
-          <div className="bg-muted/50 px-8 py-6 border-b border-border/20">
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 items-center">
+          {/* Desktop Table Header */}
+          <div className="hidden md:block bg-muted/50 px-8 py-6 border-b border-border/20">
+            <div className="grid grid-cols-4 gap-4 items-center">
               <div className="flex items-center font-semibold text-foreground">
                 <Home className="h-5 w-5 mr-2 text-primary" />
                 {t.pricing.type}
@@ -46,15 +46,57 @@ const PricingSection = () => {
                 {t.pricing.area}
               </div>
               <div className="font-semibold text-foreground">{t.pricing.price}</div>
-              <div className="hidden md:block"></div>
+              <div></div>
             </div>
           </div>
 
           {/* Apartment Rows */}
           <div className="divide-y divide-border/20">
             {apartments.map((apartment, index) => (
-              <div key={index} className="px-8 py-8 hover:bg-muted/20 transition-colors duration-300">
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-4 items-center">
+              <div key={index} className="px-4 md:px-8 py-6 md:py-8 hover:bg-muted/20 transition-colors duration-300">
+                {/* Mobile Layout */}
+                <div className="block md:hidden space-y-4">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center">
+                      <Home className="h-5 w-5 mr-2 text-primary" />
+                      <h3 className="text-lg font-semibold text-foreground">
+                        {apartment.type}
+                      </h3>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center">
+                      <Maximize className="h-5 w-5 mr-2 text-primary" />
+                      <span className="text-muted-foreground">{t.pricing.area}</span>
+                    </div>
+                    <p className="text-lg text-foreground font-medium">
+                      {apartment.area}
+                    </p>
+                  </div>
+                  
+                  <div className="space-y-2">
+                    <div className="text-xl font-bold text-primary">
+                      {apartment.price}
+                    </div>
+                    <div className="text-sm text-muted-foreground">
+                      {apartment.usdPrice}
+                    </div>
+                  </div>
+                  
+                  <div className="pt-2">
+                    <ContactDialog
+                      trigger={
+                        <PrimaryButton className="w-full" size="lg">
+                          {t.pricing.priceInquiry}
+                        </PrimaryButton>
+                      }
+                    />
+                  </div>
+                </div>
+
+                {/* Desktop Layout */}
+                <div className="hidden md:grid grid-cols-4 gap-4 items-center">
                   {/* Type */}
                   <div>
                     <h3 className="text-xl font-semibold text-foreground mb-1">

@@ -15,9 +15,9 @@ const ContactDialog: React.FC<ContactDialogProps> = ({ trigger, title }) => {
       <DialogTrigger asChild>
         {trigger}
       </DialogTrigger>
-      <DialogContent className="sm:max-w-md">
+      <DialogContent className="sm:max-w-md max-h-[90vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle className="text-center text-xl font-bold">
+          <DialogTitle className="text-center text-lg sm:text-xl font-bold">
             {title || t.nav.contactUs}
           </DialogTitle>
         </DialogHeader>

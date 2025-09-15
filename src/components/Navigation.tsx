@@ -42,7 +42,7 @@ const Navigation = () => {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <div 
-            className="font-display text-2xl font-bold text-primary min-w-[200px] whitespace-pre-line cursor-pointer"
+            className="font-display text-lg sm:text-xl md:text-2xl font-bold text-primary min-w-[120px] sm:min-w-[160px] md:min-w-[200px] whitespace-pre-line cursor-pointer"
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           >
             {t.hero.title}
@@ -154,7 +154,7 @@ const Navigation = () => {
                     key={item.name}
                     trigger={
                       <button 
-                        className="text-card-luxury-foreground hover:text-primary transition-colors duration-300 font-medium py-2 w-full text-left"
+                        className="text-card-luxury-foreground hover:text-primary transition-colors duration-300 font-medium py-3 w-full text-left text-base"
                         onClick={() => setIsMenuOpen(false)}
                       >
                         {item.name}
@@ -166,7 +166,7 @@ const Navigation = () => {
                   <a
                     key={item.name}
                     href={item.href}
-                    className="text-card-luxury-foreground hover:text-primary transition-colors duration-300 font-medium py-2"
+                    className="text-card-luxury-foreground hover:text-primary transition-colors duration-300 font-medium py-3 text-base"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     {item.name}
@@ -174,13 +174,13 @@ const Navigation = () => {
                 )
               ))}
               
-              <div className="pt-2 pb-2">
+              <div className="pt-4 pb-2">
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
                     <Button 
                       variant="ghost" 
                       size="sm" 
-                      className="w-full border border-border text-card-luxury-foreground hover:bg-accent/50 font-medium"
+                      className="w-full border border-border text-card-luxury-foreground hover:bg-accent/50 font-medium py-3"
                     >
                       {getCurrentLanguageName()}
                       <ChevronDown className="h-4 w-4 ml-2" />
@@ -201,10 +201,10 @@ const Navigation = () => {
                 </DropdownMenu>
               </div>
               
-              <div className="flex flex-col space-y-2 pt-4">
+              <div className="flex flex-col space-y-3 pt-4">
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
-                    <OutlinePrimaryButtonSmall className="w-full">
+                    <OutlinePrimaryButtonSmall className="w-full py-3">
                       <Phone className="h-4 w-4 mr-2" />
                       Phone
                       <ChevronDown className="h-4 w-4 ml-2" />
@@ -212,13 +212,13 @@ const Navigation = () => {
                   </DropdownMenuTrigger>
                   <DropdownMenuContent className="bg-card border border-border/20 shadow-elegant z-50 w-48">
                     <DropdownMenuItem asChild>
-                      <a href="tel:+998662300171" className="cursor-pointer hover:bg-accent/50 focus:bg-accent/50 text-card-foreground flex items-center">
+                      <a href="tel:+998662300171" className="cursor-pointer hover:bg-accent/50 focus:bg-accent/50 text-card-foreground flex items-center py-3">
                         <Phone className="h-4 w-4 mr-2" />
                         +(998) 66 230-01-71
                       </a>
                     </DropdownMenuItem>
                     <DropdownMenuItem asChild>
-                      <a href="tel:+998955005555" className="cursor-pointer hover:bg-accent/50 focus:bg-accent/50 text-card-foreground flex items-center">
+                      <a href="tel:+998955005555" className="cursor-pointer hover:bg-accent/50 focus:bg-accent/50 text-card-foreground flex items-center py-3">
                         <Phone className="h-4 w-4 mr-2" />
                         +(998) 95 500-55-55
                       </a>
@@ -227,7 +227,7 @@ const Navigation = () => {
                 </DropdownMenu>
                 <ContactDialog
                   trigger={
-                    <PrimaryButton>
+                    <PrimaryButton className="w-full py-3">
                       {t.nav.requestCallBack}
                     </PrimaryButton>
                   }

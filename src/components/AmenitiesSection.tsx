@@ -109,9 +109,37 @@ const AmenitiesSection = () => {
     <Section id="amenities" className="pt-32 pb-20 bg-background" maxWidth="max-w-7xl">
       <SectionHeader title={t.amenities.title} subtitle={t.amenities.subtitle} />
 
-        {/* Two-Row Slider */}
+        {/* Mobile: Single Column, Desktop: Two-Row Slider */}
         <div className="relative">
-          <div className="flex items-center justify-center gap-4">
+          {/* Mobile Layout - Single Column */}
+          <div className="block lg:hidden">
+            <div className="space-y-4">
+              {amenities.map((amenity, index) => (
+                <ElegantCard 
+                  key={index} 
+                  className="overflow-hidden cursor-pointer"
+                  onClick={() => openLightbox(index)}
+                >
+                  <div className="relative w-full h-48 sm:h-56 overflow-hidden">
+                    <img 
+                      src={amenity.image}
+                      alt={amenity.alt}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300"></div>
+                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-4">
+                      <h3 className="text-white font-display text-lg font-bold">
+                        {amenity.title}
+                      </h3>
+                    </div>
+                  </div>
+                </ElegantCard>
+              ))}
+            </div>
+          </div>
+
+          {/* Desktop Layout - Two-Row Slider */}
+          <div className="hidden lg:flex items-center justify-center gap-4">
             {/* Previous Button */}
             <button
               onClick={prevSlide}
