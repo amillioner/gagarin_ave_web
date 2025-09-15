@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -7,6 +6,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Phone, Mail, User, Shield, Clock, Award } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { PrimaryButtonFullLarge } from "@/components/ui/button-variants";
 
 const InquiryForm = () => {
   const { t } = useLanguage();
@@ -118,12 +118,9 @@ const InquiryForm = () => {
           </Label>
         </div>
 
-        <Button
-          type="submit"
-          className="w-full bg-gradient-luxury hover:opacity-90 text-primary-foreground font-semibold py-6 text-lg mt-6"
-        >
-          {t.form.submit}
-        </Button>
+          <PrimaryButtonFullLarge className="mt-6">
+            {t.form.submit}
+          </PrimaryButtonFullLarge>
       </form>
 
       {/* Trust Indicators */}

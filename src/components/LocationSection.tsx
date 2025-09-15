@@ -1,9 +1,8 @@
-import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { MapPin, Clock } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import InquiryForm from "./InquiryForm";
+import ContactDialog from "./ContactDialog";
+import { PrimaryButtonFull } from "@/components/ui/button-variants";
 
 const LocationSection = () => {
   const { t } = useLanguage();
@@ -44,7 +43,7 @@ const LocationSection = () => {
               </div>
 
               <div className="text-center">
-                <div className="inline-block bg-primary/10 text-primary px-4 py-2 rounded-lg font-semibold mb-4">
+                <div className="text-primary font-semibold">
                   Gagarin Avenue
                 </div>
                 <p className="text-primary font-semibold mb-4">
@@ -92,26 +91,13 @@ const LocationSection = () => {
               </div>
 
               <div className="text-center">
-                <Dialog>
-                  <DialogTrigger asChild>
-                <Button 
-                  className="w-full bg-gradient-luxury hover:opacity-90 text-primary-foreground font-semibold"
-                  size="lg"
-                >
-                  {t.location.requestDetails}
-                </Button>
-                  </DialogTrigger>
-                  <DialogContent className="sm:max-w-md">
-            <DialogHeader>
-              <DialogTitle className="text-center text-xl font-bold">
-                {t.nav.contactUs}
-              </DialogTitle>
-            </DialogHeader>
-                    <div className="mt-4">
-                      <InquiryForm />
-                    </div>
-                  </DialogContent>
-                </Dialog>
+                <ContactDialog
+                  trigger={
+                    <PrimaryButtonFull size="lg">
+                      {t.location.requestDetails}
+                    </PrimaryButtonFull>
+                  }
+                />
               </div>
             </div>
           </Card>

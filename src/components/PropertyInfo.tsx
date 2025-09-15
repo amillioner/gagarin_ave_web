@@ -1,9 +1,8 @@
-import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { CheckCircle, MapPin, Building, CreditCard } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import InquiryForm from "./InquiryForm";
+import ContactDialog from "./ContactDialog";
+import { PrimaryButtonFullLarge, OutlinePrimaryButtonFull } from "@/components/ui/button-variants";
 
 const PropertyInfo = () => {
   const { t } = useLanguage();
@@ -58,54 +57,26 @@ const PropertyInfo = () => {
 
         {/* CTA Buttons */}
         <div className="space-y-3">
-          <Dialog>
-            <DialogTrigger asChild>
-              <Button 
-                className="w-full bg-gradient-luxury hover:opacity-90 text-primary-foreground font-semibold py-6 text-lg"
-                size="lg"
-              >
+          <ContactDialog
+            trigger={
+              <PrimaryButtonFullLarge>
                 {t.propertyInfo.enquireNow}
-              </Button>
-            </DialogTrigger>
-            <DialogContent className="sm:max-w-md">
-              <DialogHeader>
-                <DialogTitle className="text-center text-xl font-bold">
-                  {t.nav.contactUs}
-                </DialogTitle>
-              </DialogHeader>
-              <div className="mt-4">
-                <InquiryForm />
-              </div>
-            </DialogContent>
-          </Dialog>
+              </PrimaryButtonFullLarge>
+            }
+          />
           
           <div className="flex space-x-3">
-            <Dialog>
-              <DialogTrigger asChild>
-                <Button 
-                  variant="outline" 
-                  className="flex-1 border-primary text-primary hover:bg-primary hover:text-primary-foreground"
-                >
+            <ContactDialog
+              trigger={
+                <OutlinePrimaryButtonFull className="flex-1">
                   {t.propertyInfo.organizeSiteVisit}
-                </Button>
-              </DialogTrigger>
-              <DialogContent className="sm:max-w-md">
-                <DialogHeader>
-                  <DialogTitle className="text-center text-xl font-bold">
-                    {t.propertyInfo.scheduleSiteVisit}
-                  </DialogTitle>
-                </DialogHeader>
-                <div className="mt-4">
-                  <InquiryForm />
-                </div>
-              </DialogContent>
-            </Dialog>
-            <Button 
-              variant="outline" 
-              className="flex-1 border-primary text-primary hover:bg-primary hover:text-primary-foreground"
-            >
+                </OutlinePrimaryButtonFull>
+              }
+              title={t.propertyInfo.scheduleSiteVisit}
+            />
+            <OutlinePrimaryButtonFull className="flex-1">
               +1 (555) 123-4567
-            </Button>
+            </OutlinePrimaryButtonFull>
           </div>
         </div>
       </div>

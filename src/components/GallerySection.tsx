@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react";
 import { Card } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { useLanguage } from "@/contexts/LanguageContext";
-import InquiryForm from "./InquiryForm";
+import ContactDialog from "./ContactDialog";
+import { PrimaryButton } from "@/components/ui/button-variants";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 // Building exteriors
 import buildingExterior1 from "@/assets/gallery-building-exterior-1.jpg";
@@ -232,26 +231,13 @@ const GallerySection = () => {
 
         {/* Contact Button */}
         <div className="text-center">
-          <Dialog>
-            <DialogTrigger asChild>
-              <Button 
-                className="bg-gradient-luxury hover:opacity-90 text-primary-foreground font-semibold"
-                size="lg"
-              >
+          <ContactDialog
+            trigger={
+              <PrimaryButton size="lg">
                 {t.gallery.viewComplete}
-              </Button>
-            </DialogTrigger>
-            <DialogContent className="sm:max-w-md">
-              <DialogHeader>
-                <DialogTitle className="text-center text-xl font-bold">
-                  {t.nav.contactUs}
-                </DialogTitle>
-              </DialogHeader>
-              <div className="mt-4">
-                <InquiryForm />
-              </div>
-            </DialogContent>
-          </Dialog>
+              </PrimaryButton>
+            }
+          />
         </div>
 
         {/* Lightbox Modal */}

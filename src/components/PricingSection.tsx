@@ -1,9 +1,8 @@
-import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Home, Maximize } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import InquiryForm from "./InquiryForm";
+import ContactDialog from "./ContactDialog";
+import { PrimaryButton } from "@/components/ui/button-variants";
 
 const PricingSection = () => {
   const { t } = useLanguage();
@@ -86,26 +85,13 @@ const PricingSection = () => {
 
                   {/* CTA Button */}
                   <div className="flex justify-end">
-                    <Dialog>
-                      <DialogTrigger asChild>
-                        <Button 
-                          className="bg-gradient-luxury hover:opacity-90 text-primary-foreground font-semibold px-8"
-                          size="lg"
-                        >
+                    <ContactDialog
+                      trigger={
+                        <PrimaryButton className="px-8" size="lg">
                           {t.pricing.priceInquiry}
-                        </Button>
-                      </DialogTrigger>
-                      <DialogContent className="sm:max-w-md">
-                        <DialogHeader>
-                          <DialogTitle className="text-center text-xl font-bold">
-                            {t.nav.contactUs}
-                          </DialogTitle>
-                        </DialogHeader>
-                        <div className="mt-4">
-                          <InquiryForm />
-                        </div>
-                      </DialogContent>
-                    </Dialog>
+                        </PrimaryButton>
+                      }
+                    />
                   </div>
                 </div>
               </div>

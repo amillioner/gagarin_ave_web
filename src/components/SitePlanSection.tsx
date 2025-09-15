@@ -1,9 +1,8 @@
-import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { FileText, Home } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import InquiryForm from "./InquiryForm";
+import ContactDialog from "./ContactDialog";
+import { PrimaryButtonFull } from "@/components/ui/button-variants";
 import masterPlan from "@/assets/master-plan.jpg";
 import unitPlan from "@/assets/unit-plan.jpg";
 
@@ -48,27 +47,14 @@ const SitePlanSection = () => {
                 </div>
               </div>
               
-              <Dialog>
-                <DialogTrigger asChild>
-                  <Button 
-                    className="w-full bg-gradient-luxury hover:opacity-90 text-primary-foreground font-semibold"
-                    size="lg"
-                  >
+              <ContactDialog
+                trigger={
+                  <PrimaryButtonFull size="lg">
                     <FileText className="h-5 w-5 mr-2" />
                     {t.sitePlan.viewMasterPlan}
-                  </Button>
-                </DialogTrigger>
-                <DialogContent className="sm:max-w-md">
-              <DialogHeader>
-                <DialogTitle className="text-center text-xl font-bold">
-                  {t.nav.contactUs}
-                </DialogTitle>
-              </DialogHeader>
-                  <div className="mt-4">
-                    <InquiryForm />
-                  </div>
-                </DialogContent>
-              </Dialog>
+                  </PrimaryButtonFull>
+                }
+              />
             </div>
           </Card>
 
@@ -97,27 +83,14 @@ const SitePlanSection = () => {
                 </div>
               </div>
               
-              <Dialog>
-                <DialogTrigger asChild>
-                  <Button 
-                    className="w-full bg-gradient-luxury hover:opacity-90 text-primary-foreground font-semibold"
-                    size="lg"
-                  >
+              <ContactDialog
+                trigger={
+                  <PrimaryButtonFull size="lg">
                     <Home className="h-5 w-5 mr-2" />
                     {t.sitePlan.requestUnitPlan}
-                  </Button>
-                </DialogTrigger>
-                <DialogContent className="sm:max-w-md">
-              <DialogHeader>
-                <DialogTitle className="text-center text-xl font-bold">
-                  {t.nav.contactUs}
-                </DialogTitle>
-              </DialogHeader>
-                  <div className="mt-4">
-                    <InquiryForm />
-                  </div>
-                </DialogContent>
-              </Dialog>
+                  </PrimaryButtonFull>
+                }
+              />
             </div>
           </Card>
         </div>

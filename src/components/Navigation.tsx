@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Menu, X, Phone, ChevronDown } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import InquiryForm from "./InquiryForm";
+import ContactDialog from "./ContactDialog";
+import { PrimaryButton, OutlinePrimaryButtonSmall } from "@/components/ui/button-variants";
 
 const Navigation = () => {
   const { language, setLanguage, t } = useLanguage();
@@ -48,23 +48,15 @@ const Navigation = () => {
           <div className="hidden lg:flex items-center space-x-6">
             {navItems.map((item) => (
               item.name === t.nav.brochure ? (
-                <Dialog key={item.name}>
-                  <DialogTrigger asChild>
+                <ContactDialog
+                  key={item.name}
+                  trigger={
                     <button className="text-card-luxury-foreground hover:text-primary transition-colors duration-300 font-medium whitespace-nowrap min-w-[80px] text-center">
                       {item.name}
                     </button>
-                  </DialogTrigger>
-                  <DialogContent className="sm:max-w-md">
-                    <DialogHeader>
-                      <DialogTitle className="text-center text-xl font-bold">
-                        {t.nav.brochure}
-                      </DialogTitle>
-                    </DialogHeader>
-                    <div className="mt-4">
-                      <InquiryForm />
-                    </div>
-                  </DialogContent>
-                </Dialog>
+                  }
+                  title={t.nav.brochure}
+                />
               ) : (
                 <a
                   key={item.name}
@@ -107,11 +99,11 @@ const Navigation = () => {
             
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="outline" size="sm" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
+                <OutlinePrimaryButtonSmall>
                   <Phone className="h-4 w-4 mr-2" />
                   Phone
                   <ChevronDown className="h-4 w-4 ml-2" />
-                </Button>
+                </OutlinePrimaryButtonSmall>
               </DropdownMenuTrigger>
               <DropdownMenuContent className="bg-card border border-border/20 shadow-elegant z-50" align="end">
                 <DropdownMenuItem asChild>
@@ -128,23 +120,13 @@ const Navigation = () => {
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
-            <Dialog>
-              <DialogTrigger asChild>
-                <Button className="bg-gradient-luxury hover:opacity-90 text-primary-foreground font-semibold whitespace-nowrap min-w-[140px]">
+            <ContactDialog
+              trigger={
+                <PrimaryButton className="whitespace-nowrap min-w-[140px]">
                   {t.nav.requestCallBack}
-                </Button>
-              </DialogTrigger>
-              <DialogContent className="sm:max-w-md">
-                <DialogHeader>
-                  <DialogTitle className="text-center text-xl font-bold">
-                    {t.nav.contactUs}
-                  </DialogTitle>
-                </DialogHeader>
-                <div className="mt-4">
-                  <InquiryForm />
-                </div>
-              </DialogContent>
-            </Dialog>
+                </PrimaryButton>
+              }
+            />
           </div>
 
           {/* Mobile Menu Button */}
@@ -164,26 +146,18 @@ const Navigation = () => {
             <div className="flex flex-col space-y-3 pt-4">
               {navItems.map((item) => (
                 item.name === t.nav.brochure ? (
-                  <Dialog key={item.name}>
-                    <DialogTrigger asChild>
+                  <ContactDialog
+                    key={item.name}
+                    trigger={
                       <button 
                         className="text-card-luxury-foreground hover:text-primary transition-colors duration-300 font-medium py-2 w-full text-left"
                         onClick={() => setIsMenuOpen(false)}
                       >
                         {item.name}
                       </button>
-                    </DialogTrigger>
-                    <DialogContent className="sm:max-w-md">
-                      <DialogHeader>
-                        <DialogTitle className="text-center text-xl font-bold">
-                          {t.nav.brochure}
-                        </DialogTitle>
-                      </DialogHeader>
-                      <div className="mt-4">
-                        <InquiryForm />
-                      </div>
-                    </DialogContent>
-                  </Dialog>
+                    }
+                    title={t.nav.brochure}
+                  />
                 ) : (
                   <a
                     key={item.name}
@@ -226,11 +200,11 @@ const Navigation = () => {
               <div className="flex flex-col space-y-2 pt-4">
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
-                    <Button variant="outline" size="sm" className="w-full border-primary text-primary hover:bg-primary hover:text-primary-foreground">
+                    <OutlinePrimaryButtonSmall className="w-full">
                       <Phone className="h-4 w-4 mr-2" />
                       Phone
                       <ChevronDown className="h-4 w-4 ml-2" />
-                    </Button>
+                    </OutlinePrimaryButtonSmall>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent className="bg-card border border-border/20 shadow-elegant z-50 w-48">
                     <DropdownMenuItem asChild>
@@ -247,23 +221,13 @@ const Navigation = () => {
                     </DropdownMenuItem>
                   </DropdownMenuContent>
                 </DropdownMenu>
-                <Dialog>
-                  <DialogTrigger asChild>
-                    <Button className="bg-gradient-luxury hover:opacity-90 text-primary-foreground font-semibold">
+                <ContactDialog
+                  trigger={
+                    <PrimaryButton>
                       {t.nav.requestCallBack}
-                    </Button>
-                  </DialogTrigger>
-                  <DialogContent className="sm:max-w-md">
-                    <DialogHeader>
-                      <DialogTitle className="text-center text-xl font-bold">
-                        {t.nav.contactUs}
-                      </DialogTitle>
-                    </DialogHeader>
-                    <div className="mt-4">
-                      <InquiryForm />
-                    </div>
-                  </DialogContent>
-                </Dialog>
+                    </PrimaryButton>
+                  }
+                />
               </div>
             </div>
           </div>
