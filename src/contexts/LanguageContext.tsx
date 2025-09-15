@@ -57,6 +57,11 @@ export interface Translation {
     title: string;
     connectivity: string;
     requestDetails: string;
+    primeLocation: string;
+    connectivityData: Array<{
+      name: string;
+      time: string;
+    }>;
   };
   sitePlan: {
     title: string;
@@ -64,6 +69,14 @@ export interface Translation {
     viewMasterPlan: string;
     requestUnitPlan: string;
     description: string;
+  };
+  propertyInfo: {
+    flexiblePayment: string;
+    paymentPlan: string;
+    downPayment: string;
+    enquireNow: string;
+    organizeSiteVisit: string;
+    scheduleSiteVisit: string;
   };
   form: {
     name: string;
@@ -147,6 +160,15 @@ const translations: Record<string, Translation> = {
       title: "Location",
       connectivity: "Connectivity",
       requestDetails: "Request Location Details",
+      primeLocation: "Prime Location",
+      connectivityData: [
+        { name: "Samarkand State University", time: "5 Mins" },
+        { name: "Central Bazaar Market", time: "8 Mins" },
+        { name: "Registan Square", time: "12 Mins" },
+        { name: "Samarkand Park", time: "7 Mins" },
+        { name: "City Shopping Center", time: "10 Mins" },
+        { name: "Traditional Restaurants District", time: "6 Mins" }
+      ],
     },
     sitePlan: {
       title: "Site Plan & Layout",
@@ -154,6 +176,14 @@ const translations: Record<string, Translation> = {
       viewMasterPlan: "View Master Plan Layout",
       requestUnitPlan: "Request Unit Plan Layout",
       description: "Explore our comprehensive site plans and detailed unit layouts. Get a complete understanding of the property's layout, positioning, and architectural design.",
+    },
+    propertyInfo: {
+      flexiblePayment: "Flexible Payment Options Available",
+      paymentPlan: "Easy 70/30 Payment Plan",
+      downPayment: "Down Payment 20%",
+      enquireNow: "Enquire Now",
+      organizeSiteVisit: "Organize Site Visit",
+      scheduleSiteVisit: "Schedule Site Visit",
     },
     form: {
       name: "Full Name",
@@ -235,6 +265,15 @@ const translations: Record<string, Translation> = {
       title: "Местоположение",
       connectivity: "Связь",
       requestDetails: "Запросить детали местоположения",
+      primeLocation: "Премиальное местоположение",
+      connectivityData: [
+        { name: "Самаркандский государственный университет", time: "5 мин" },
+        { name: "Центральный базар", time: "8 мин" },
+        { name: "Площадь Регистан", time: "12 мин" },
+        { name: "Парк Самарканда", time: "7 мин" },
+        { name: "Городской торговый центр", time: "10 мин" },
+        { name: "Район традиционных ресторанов", time: "6 мин" }
+      ],
     },
     sitePlan: {
       title: "План участка и планировка",
@@ -242,6 +281,14 @@ const translations: Record<string, Translation> = {
       viewMasterPlan: "Посмотреть генеральный план",
       requestUnitPlan: "Запросить план квартиры",
       description: "Изучите наши комплексные планы участков и детальные планировки квартир. Получите полное представление о планировке, расположении и архитектурном дизайне недвижимости.",
+    },
+    propertyInfo: {
+      flexiblePayment: "Доступны гибкие варианты оплаты",
+      paymentPlan: "Простой план оплаты 70/30",
+      downPayment: "Первоначальный взнос 20%",
+      enquireNow: "Узнать сейчас",
+      organizeSiteVisit: "Организовать посещение объекта",
+      scheduleSiteVisit: "Запланировать посещение объекта",
     },
     form: {
       name: "Полное имя",
@@ -323,6 +370,15 @@ const translations: Record<string, Translation> = {
       title: "Joylashuv",
       connectivity: "Aloqa",
       requestDetails: "Joylashuv tafsilotlarini so'rash",
+      primeLocation: "Premium joylashuv",
+      connectivityData: [
+        { name: "Samarqand davlat universiteti", time: "5 daqiqa" },
+        { name: "Markaziy bozor", time: "8 daqiqa" },
+        { name: "Registon maydoni", time: "12 daqiqa" },
+        { name: "Samarqand bog'i", time: "7 daqiqa" },
+        { name: "Shahar savdo markazi", time: "10 daqiqa" },
+        { name: "An'anaviy restoranlar tumani", time: "6 daqiqa" }
+      ],
     },
     sitePlan: {
       title: "Sayt rejasi va tartib",
@@ -330,6 +386,14 @@ const translations: Record<string, Translation> = {
       viewMasterPlan: "Bosh reja tartibini ko'rish",
       requestUnitPlan: "Kvartira rejasini so'rash",
       description: "Bizning keng qamrovli sayt rejalarimiz va batafsil kvartira tartiblarini o'rganing. Mulkning tartib-qoidalari, joylashuvi va me'moriy dizayni haqida to'liq tushunchaga ega bo'ling.",
+    },
+    propertyInfo: {
+      flexiblePayment: "Moslashuvchan to'lov variantlari mavjud",
+      paymentPlan: "Oson 70/30 to'lov rejasi",
+      downPayment: "Dastlabki to'lov 20%",
+      enquireNow: "Hozir so'rang",
+      organizeSiteVisit: "Ob'ektga tashrif tashlash",
+      scheduleSiteVisit: "Ob'ektga tashrifni rejalashtirish",
     },
     form: {
       name: "To'liq ism",

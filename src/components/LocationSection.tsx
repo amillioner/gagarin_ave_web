@@ -7,14 +7,6 @@ import InquiryForm from "./InquiryForm";
 
 const LocationSection = () => {
   const { t } = useLanguage();
-  const connectivityData = [
-    { name: "Samarkand State University", time: "5 Mins" },
-    { name: "Central Bazaar Market", time: "8 Mins" },
-    { name: "Registan Square", time: "12 Mins" },
-    { name: "Samarkand Park", time: "7 Mins" },
-    { name: "City Shopping Center", time: "10 Mins" },
-    { name: "Traditional Restaurants District", time: "6 Mins" }
-  ];
 
   return (
     <section id="location" className="pt-32 pb bg-muted/30">
@@ -33,7 +25,7 @@ const LocationSection = () => {
               <div className="text-center mb-4">
                 <h3 className="font-display text-2xl font-bold text-primary mb-2 flex items-center justify-center gap-2">
                   <MapPin className="h-6 w-6 text-primary" />
-                  Prime Location
+                  {t.location.primeLocation}
                 </h3>
                 <div className="w-16 h-0.5 bg-gradient-luxury mx-auto"></div>
               </div>
@@ -86,7 +78,7 @@ const LocationSection = () => {
               </div>
 
               <div className="space-y-4 mb-6">
-                {connectivityData.map((item, index) => (
+                {t.location.connectivityData.map((item, index) => (
                   <div key={index} className="flex items-center justify-between p-3 bg-background/50 rounded-lg border border-border/20 hover:bg-background/80 transition-colors duration-300">
                     <div className="flex items-center gap-3">
                       <MapPin className="h-4 w-4 text-primary flex-shrink-0" />
