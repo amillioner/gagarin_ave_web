@@ -10,8 +10,8 @@ const PropertyInfo = () => {
       <div className="space-y-6">
         {/* Property Title */}
         <div>
-          <h1 className="font-display text-4xl font-bold text-foreground mb-2">
-            GAGARIN AVENUE
+          <h1 className="font-display text-4xl font-bold text-foreground mb-2 whitespace-pre-line">
+            GAGARIN{'\n'}AVENUE
           </h1>
           <div className="flex items-center text-muted-foreground mb-1">
             <MapPin className="h-5 w-5 mr-2" />

@@ -40,7 +40,7 @@ const Navigation = () => {
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <div className="font-display text-2xl font-bold text-primary min-w-[200px]">
+          <div className="font-display text-2xl font-bold text-primary min-w-[200px] whitespace-pre-line">
             {t.hero.title}
           </div>
 
