@@ -39,13 +39,13 @@ const PricingSection = () => {
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4 items-center">
               <div className="flex items-center font-semibold text-foreground">
                 <Home className="h-5 w-5 mr-2 text-primary" />
-                Type
+                {t.pricing.type}
               </div>
               <div className="flex items-center font-semibold text-foreground">
                 <Maximize className="h-5 w-5 mr-2 text-primary" />
-                Area
+                {t.pricing.area}
               </div>
-              <div className="font-semibold text-foreground">Price</div>
+              <div className="font-semibold text-foreground">{t.pricing.price}</div>
               <div className="hidden md:block"></div>
             </div>
           </div>

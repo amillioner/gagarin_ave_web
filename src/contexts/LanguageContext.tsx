@@ -27,6 +27,9 @@ export interface Translation {
     readyToMove: string;
     premiumFinishes: string;
     priceInquiry: string;
+    type: string;
+    area: string;
+    price: string;
     bedrooms: {
       one: string;
       two: string;
@@ -130,6 +133,9 @@ const translations: Record<string, Translation> = {
       readyToMove: "Ready to Move",
       premiumFinishes: "Premium Finishes",
       priceInquiry: "Price Inquiry",
+      type: "Type",
+      area: "Area",
+      price: "Price",
       bedrooms: {
         one: "1 Bedroom",
         two: "2 Bedroom",
@@ -235,6 +241,9 @@ const translations: Record<string, Translation> = {
       readyToMove: "Готово к заселению",
       premiumFinishes: "Премиум отделка",
       priceInquiry: "Запрос цены",
+      type: "Тип",
+      area: "Площадь",
+      price: "Цена",
       bedrooms: {
         one: "1 комнатная",
         two: "2 комнатная",
@@ -340,6 +349,9 @@ const translations: Record<string, Translation> = {
       readyToMove: "Ko'chishga tayyor",
       premiumFinishes: "Premium tugallash",
       priceInquiry: "Narx so'rovi",
+      type: "Turi",
+      area: "Maydoni",
+      price: "Narxi",
       bedrooms: {
         one: "1 xonali",
         two: "2 xonali",
