@@ -104,12 +104,15 @@ const AmenitiesSection = () => {
   };
 
   return (
-    <section id="amenities" className="pt-32 pb bg-muted/30">
+    <section id="amenities" className="pt-32 pb-20 bg-background">
       <div className="container mx-auto px-4 max-w-7xl">
         <div className="text-center mb-12">
-          <div className="inline-block bg-primary text-primary-foreground px-6 py-2 rounded-lg font-semibold text-lg mb-4">
+          <h2 className="font-display text-4xl font-bold text-primary mb-4">
             {t.amenities.title}
-          </div>
+          </h2>
+          <p className="text-muted-foreground text-lg max-w-2xl mx-auto mb-4">
+            {t.amenities.subtitle}
+          </p>
           <div className="w-24 h-1 bg-gradient-luxury mx-auto"></div>
         </div>
 

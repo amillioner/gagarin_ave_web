@@ -179,9 +179,12 @@ const GallerySection = () => {
     <section id="gallery" className="pt-32 pb-20 bg-background">
       <div className="container mx-auto px-4 max-w-7xl">
         <div className="text-center mb-12">
-          <h2 className="font-display text-4xl font-bold text-primary mb-4" style={{ color: '#B8860B' }}>
+          <h2 className="font-display text-4xl font-bold text-primary mb-4">
             {t.gallery.title}
           </h2>
+          <p className="text-muted-foreground text-lg max-w-2xl mx-auto mb-4">
+            {t.gallery.subtitle}
+          </p>
           <div className="w-24 h-1 bg-gradient-luxury mx-auto"></div>
         </div>
 
